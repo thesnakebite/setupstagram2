@@ -54,6 +54,20 @@
                 <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
                 <jet-input-error :message="form.errors.email" class="mt-2" />
             </div>
+
+            <!-- WebSite -->
+            <div class="col-span-6 sm:col-span-4">
+                <jet-label for="web_site" value="Web site" />
+                <jet-input id="web_site" type="text" class="mt-1 block w-full" v-model="form.web_site" />
+                <jet-input-error :message="form.errors.web_site" class="mt-2" />
+            </div>
+
+            <!-- Presentation -->
+            <div class="col-span-6 sm:col-span-4">
+                <jet-label for="presentation" value="Presentación" />
+                <jet-input id="presentation" type="text" class="mt-1 block w-full" v-model="form.presentation" />
+                <jet-input-error :message="form.errors.presentation" class="mt-2" />
+            </div>
         </template>
 
         <template #actions>
@@ -96,6 +110,8 @@
                     _method: 'PUT',
                     name: this.user.name,
                     email: this.user.email,
+                    web_site: this.user.web_site,
+                    presentation: this.user.presentation,
                     photo: null,
                 }),
 

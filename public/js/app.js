@@ -2989,8 +2989,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Jetstream_AuthenticationCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/AuthenticationCard */ "./resources/js/Jetstream/AuthenticationCard.vue");
-/* harmony import */ var _Jetstream_AuthenticationCardLogo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/AuthenticationCardLogo */ "./resources/js/Jetstream/AuthenticationCardLogo.vue");
+/* harmony import */ var _Components_AuthenticationCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/AuthenticationCard */ "./resources/js/Components/AuthenticationCard.vue");
+/* harmony import */ var _Components_AuthenticationCardLogo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/AuthenticationCardLogo */ "./resources/js/Components/AuthenticationCardLogo.vue");
 /* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
 /* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
@@ -3003,8 +3003,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    JetAuthenticationCard: _Jetstream_AuthenticationCard__WEBPACK_IMPORTED_MODULE_0__["default"],
-    JetAuthenticationCardLogo: _Jetstream_AuthenticationCardLogo__WEBPACK_IMPORTED_MODULE_1__["default"],
+    AuthenticationCard: _Components_AuthenticationCard__WEBPACK_IMPORTED_MODULE_0__["default"],
+    AuthenticationCardLogo: _Components_AuthenticationCardLogo__WEBPACK_IMPORTED_MODULE_1__["default"],
     JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_2__["default"],
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__["default"],
     JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -3112,8 +3112,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Jetstream_AuthenticationCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/AuthenticationCard */ "./resources/js/Jetstream/AuthenticationCard.vue");
-/* harmony import */ var _Jetstream_AuthenticationCardLogo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/AuthenticationCardLogo */ "./resources/js/Jetstream/AuthenticationCardLogo.vue");
+/* harmony import */ var _Components_AuthenticationCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/AuthenticationCard */ "./resources/js/Components/AuthenticationCard.vue");
+/* harmony import */ var _Components_AuthenticationCardLogo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/AuthenticationCardLogo */ "./resources/js/Components/AuthenticationCardLogo.vue");
 /* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
 /* harmony import */ var _Jetstream_Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/Checkbox */ "./resources/js/Jetstream/Checkbox.vue");
@@ -3128,8 +3128,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    JetAuthenticationCard: _Jetstream_AuthenticationCard__WEBPACK_IMPORTED_MODULE_0__["default"],
-    JetAuthenticationCardLogo: _Jetstream_AuthenticationCardLogo__WEBPACK_IMPORTED_MODULE_1__["default"],
+    AuthenticationCard: _Components_AuthenticationCard__WEBPACK_IMPORTED_MODULE_0__["default"],
+    AuthenticationCardLogo: _Components_AuthenticationCardLogo__WEBPACK_IMPORTED_MODULE_1__["default"],
     JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_2__["default"],
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__["default"],
     JetCheckbox: _Jetstream_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -3140,6 +3140,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: this.$inertia.form({
         name: '',
+        nick_name: '',
         email: '',
         password: '',
         password_confirmation: '',
@@ -3761,6 +3762,8 @@ __webpack_require__.r(__webpack_exports__);
         _method: 'PUT',
         name: this.user.name,
         email: this.user.email,
+        web_site: this.user.web_site,
+        presentation: this.user.presentation,
         photo: null
       }),
       photoPreview: null
@@ -3866,7 +3869,7 @@ var render = function render() {
     staticClass: "w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"
   }, [_c("div", {
     staticClass: "flex justify-center my-4"
-  }, [_vm._t("logo")], 2), _vm._v(" "), _vm._t("default")], 2)]);
+  }, [_vm._t("logo")], 2), _vm._v(" "), _vm._t("default")], 2), _vm._v(" "), _vm._t("register")], 2);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -6087,11 +6090,11 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("jet-authentication-card", {
+  return _c("authentication-card", {
     scopedSlots: _vm._u([{
       key: "logo",
       fn: function fn() {
-        return [_c("jet-authentication-card-logo")];
+        return [_c("authentication-card-logo")];
       },
       proxy: true
     }])
@@ -6165,6 +6168,23 @@ var render = function render() {
       key: "logo",
       fn: function fn() {
         return [_c("authentication-card-logo")];
+      },
+      proxy: true
+    }, {
+      key: "register",
+      fn: function fn() {
+        return [_c("div", {
+          staticClass: "w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"
+        }, [_c("div", {
+          staticClass: "flex justify-center my-4"
+        }, [_c("span", {
+          staticClass: "mr-4 text-sm text-gray-600"
+        }, [_vm._v("No tienes cuenta")]), _vm._v(" "), _c("inertia-link", {
+          staticClass: "font-bold text-sm text-gray-600 hover:text-indigo-800",
+          attrs: {
+            href: _vm.route("register")
+          }
+        }, [_vm._v("\n                Registrate\n            ")])], 1)])];
       },
       proxy: true
     }])
@@ -6253,16 +6273,7 @@ var render = function render() {
     attrs: {
       disabled: _vm.form.processing
     }
-  }, [_vm._v("\n                Login\n            ")])], 1)]), _vm._v(" "), _c("div", {
-    staticClass: "w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"
-  }, [_c("div", {
-    staticClass: "flex justify-center my-4"
-  }, [_c("span", [_vm._v("No tienes cuenta")]), _vm._v(" "), _c("inertia-link", {
-    staticClass: "underline text-sm text-gray-600 hover:text-gray-900",
-    attrs: {
-      href: _vm.route("register")
-    }
-  }, [_vm._v("\n                Registrate\n            ")])], 1)])], 1);
+  }, [_vm._v("\n                Login\n            ")])], 1)])], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -6285,11 +6296,11 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("jet-authentication-card", {
+  return _c("authentication-card", {
     scopedSlots: _vm._u([{
       key: "logo",
       fn: function fn() {
-        return [_c("jet-authentication-card-logo")];
+        return [_c("authentication-card-logo")];
       },
       proxy: true
     }])
@@ -6322,6 +6333,27 @@ var render = function render() {
         _vm.$set(_vm.form, "name", $$v);
       },
       expression: "form.name"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "mt-4"
+  }, [_c("jet-label", {
+    attrs: {
+      "for": "nick_name",
+      value: "Nick name"
+    }
+  }), _vm._v(" "), _c("jet-input", {
+    staticClass: "mt-1 block w-full",
+    attrs: {
+      id: "nick_name",
+      type: "text",
+      required: ""
+    },
+    model: {
+      value: _vm.form.nick_name,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "nick_name", $$v);
+      },
+      expression: "form.nick_name"
     }
   })], 1), _vm._v(" "), _c("div", {
     staticClass: "mt-4"
@@ -7557,6 +7589,56 @@ var render = function render() {
           staticClass: "mt-2",
           attrs: {
             message: _vm.form.errors.email
+          }
+        })], 1), _vm._v(" "), _c("div", {
+          staticClass: "col-span-6 sm:col-span-4"
+        }, [_c("jet-label", {
+          attrs: {
+            "for": "web_site",
+            value: "Web site"
+          }
+        }), _vm._v(" "), _c("jet-input", {
+          staticClass: "mt-1 block w-full",
+          attrs: {
+            id: "web_site",
+            type: "text"
+          },
+          model: {
+            value: _vm.form.web_site,
+            callback: function callback($$v) {
+              _vm.$set(_vm.form, "web_site", $$v);
+            },
+            expression: "form.web_site"
+          }
+        }), _vm._v(" "), _c("jet-input-error", {
+          staticClass: "mt-2",
+          attrs: {
+            message: _vm.form.errors.web_site
+          }
+        })], 1), _vm._v(" "), _c("div", {
+          staticClass: "col-span-6 sm:col-span-4"
+        }, [_c("jet-label", {
+          attrs: {
+            "for": "presentation",
+            value: "Presentación"
+          }
+        }), _vm._v(" "), _c("jet-input", {
+          staticClass: "mt-1 block w-full",
+          attrs: {
+            id: "presentation",
+            type: "text"
+          },
+          model: {
+            value: _vm.form.presentation,
+            callback: function callback($$v) {
+              _vm.$set(_vm.form, "presentation", $$v);
+            },
+            expression: "form.presentation"
+          }
+        }), _vm._v(" "), _c("jet-input-error", {
+          staticClass: "mt-2",
+          attrs: {
+            message: _vm.form.errors.presentation
           }
         })], 1)];
       },

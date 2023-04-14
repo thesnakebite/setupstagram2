@@ -6,5 +6,6 @@
             </div>
             <slot />
         </div>
+        <slot name="register" />
     </div>
 </template>
