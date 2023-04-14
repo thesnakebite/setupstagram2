@@ -3040,8 +3040,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Jetstream_AuthenticationCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/AuthenticationCard */ "./resources/js/Jetstream/AuthenticationCard.vue");
-/* harmony import */ var _Jetstream_AuthenticationCardLogo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/AuthenticationCardLogo */ "./resources/js/Jetstream/AuthenticationCardLogo.vue");
+/* harmony import */ var _Components_AuthenticationCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/AuthenticationCard */ "./resources/js/Components/AuthenticationCard.vue");
+/* harmony import */ var _Components_AuthenticationCardLogo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/AuthenticationCardLogo */ "./resources/js/Components/AuthenticationCardLogo.vue");
 /* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
 /* harmony import */ var _Jetstream_Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/Checkbox */ "./resources/js/Jetstream/Checkbox.vue");
@@ -3062,8 +3062,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    JetAuthenticationCard: _Jetstream_AuthenticationCard__WEBPACK_IMPORTED_MODULE_0__["default"],
-    JetAuthenticationCardLogo: _Jetstream_AuthenticationCardLogo__WEBPACK_IMPORTED_MODULE_1__["default"],
+    AuthenticationCard: _Components_AuthenticationCard__WEBPACK_IMPORTED_MODULE_0__["default"],
+    AuthenticationCardLogo: _Components_AuthenticationCardLogo__WEBPACK_IMPORTED_MODULE_1__["default"],
     JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_2__["default"],
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__["default"],
     JetCheckbox: _Jetstream_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -3842,6 +3842,78 @@ __webpack_require__.r(__webpack_exports__);
     phpVersion: String
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Components/AuthenticationCard.vue?vue&type=template&id=443b2b33&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Components/AuthenticationCard.vue?vue&type=template&id=443b2b33& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100"
+  }, [_c("div", {
+    staticClass: "w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"
+  }, [_c("div", {
+    staticClass: "flex justify-center my-4"
+  }, [_vm._t("logo")], 2), _vm._v(" "), _vm._t("default")], 2)]);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Components/AuthenticationCardLogo.vue?vue&type=template&id=9b587c04&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Components/AuthenticationCardLogo.vue?vue&type=template&id=9b587c04& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("inertia-link", {
+    attrs: {
+      href: "/"
+    }
+  }, [_c("svg", {
+    attrs: {
+      fill: "#C2BBBA",
+      width: "80px",
+      height: "80px",
+      viewBox: "0 -3 46 46",
+      xmlns: "http://www.w3.org/2000/svg"
+    }
+  }, [_c("path", {
+    attrs: {
+      id: "_29.Mac",
+      "data-name": "29.Mac",
+      d: "M43,35H29.195a11.476,11.476,0,0,0,4.4,7H36a1,1,0,0,1,0,2H12a1,1,0,0,1,0-2h2.4a11.476,11.476,0,0,0,4.4-7H5a4,4,0,0,1-4-4V8A4,4,0,0,1,5,4H43a4,4,0,0,1,4,4V31A4,4,0,0,1,43,35ZM17.4,42H30.6a12.747,12.747,0,0,1-3.459-7H20.856A12.747,12.747,0,0,1,17.4,42ZM45,8a2,2,0,0,0-2-2H5A2,2,0,0,0,3,8V27H45Zm0,21H3v2a2,2,0,0,0,2,2H43a2,2,0,0,0,2-2ZM24,32a1,1,0,1,1,1-1A1,1,0,0,1,24,32Z",
+      transform: "translate(-1 -4)",
+      "fill-rule": "evenodd"
+    }
+  })])]);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
 
 /***/ }),
 
@@ -6088,11 +6160,11 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("jet-authentication-card", {
+  return _c("authentication-card", {
     scopedSlots: _vm._u([{
       key: "logo",
       fn: function fn() {
-        return [_c("jet-authentication-card-logo")];
+        return [_c("authentication-card-logo")];
       },
       proxy: true
     }])
@@ -6181,7 +6253,16 @@ var render = function render() {
     attrs: {
       disabled: _vm.form.processing
     }
-  }, [_vm._v("\n                Login\n            ")])], 1)])], 1);
+  }, [_vm._v("\n                Login\n            ")])], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"
+  }, [_c("div", {
+    staticClass: "flex justify-center my-4"
+  }, [_c("span", [_vm._v("No tienes cuenta")]), _vm._v(" "), _c("inertia-link", {
+    staticClass: "underline text-sm text-gray-600 hover:text-gray-900",
+    attrs: {
+      href: _vm.route("register")
+    }
+  }, [_vm._v("\n                Registrate\n            ")])], 1)])], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -30476,6 +30557,80 @@ module.exports = function (list, options) {
 
 /***/ }),
 
+/***/ "./resources/js/Components/AuthenticationCard.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/Components/AuthenticationCard.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AuthenticationCard_vue_vue_type_template_id_443b2b33___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AuthenticationCard.vue?vue&type=template&id=443b2b33& */ "./resources/js/Components/AuthenticationCard.vue?vue&type=template&id=443b2b33&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _AuthenticationCard_vue_vue_type_template_id_443b2b33___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AuthenticationCard_vue_vue_type_template_id_443b2b33___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Components/AuthenticationCard.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Components/AuthenticationCardLogo.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/Components/AuthenticationCardLogo.vue ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AuthenticationCardLogo_vue_vue_type_template_id_9b587c04___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AuthenticationCardLogo.vue?vue&type=template&id=9b587c04& */ "./resources/js/Components/AuthenticationCardLogo.vue?vue&type=template&id=9b587c04&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _AuthenticationCardLogo_vue_vue_type_template_id_9b587c04___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AuthenticationCardLogo_vue_vue_type_template_id_9b587c04___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Components/AuthenticationCardLogo.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/Jetstream/ActionMessage.vue":
 /*!**************************************************!*\
   !*** ./resources/js/Jetstream/ActionMessage.vue ***!
@@ -32952,6 +33107,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Welcome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Welcome.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Welcome.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Welcome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Components/AuthenticationCard.vue?vue&type=template&id=443b2b33&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/Components/AuthenticationCard.vue?vue&type=template&id=443b2b33& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthenticationCard_vue_vue_type_template_id_443b2b33___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthenticationCard_vue_vue_type_template_id_443b2b33___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthenticationCard_vue_vue_type_template_id_443b2b33___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AuthenticationCard.vue?vue&type=template&id=443b2b33& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Components/AuthenticationCard.vue?vue&type=template&id=443b2b33&");
+
+
+/***/ }),
+
+/***/ "./resources/js/Components/AuthenticationCardLogo.vue?vue&type=template&id=9b587c04&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/Components/AuthenticationCardLogo.vue?vue&type=template&id=9b587c04& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthenticationCardLogo_vue_vue_type_template_id_9b587c04___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthenticationCardLogo_vue_vue_type_template_id_9b587c04___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthenticationCardLogo_vue_vue_type_template_id_9b587c04___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AuthenticationCardLogo.vue?vue&type=template&id=9b587c04& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Components/AuthenticationCardLogo.vue?vue&type=template&id=9b587c04&");
+
 
 /***/ }),
 

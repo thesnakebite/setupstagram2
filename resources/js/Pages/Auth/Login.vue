@@ -1,7 +1,7 @@
 <template>
-    <jet-authentication-card>
+    <authentication-card>
         <template #logo>
-            <jet-authentication-card-logo />
+            <authentication-card-logo />
         </template>
 
         <jet-validation-errors class="mb-4" />
@@ -38,12 +38,20 @@
                 </jet-button>
             </div>
         </form>
-    </jet-authentication-card>
+            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                <div class="flex justify-center my-4">
+                   <span>No tienes cuenta</span>
+                   <inertia-link  :href="route('register')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                    Registrate
+                </inertia-link>
+                </div>
+            </div>
+    </authentication-card>
 </template>
 
 <script>
-    import JetAuthenticationCard from '@/Jetstream/AuthenticationCard'
-    import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'
+    import AuthenticationCard from '@/Components/AuthenticationCard'
+    import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo'
     import JetButton from '@/Jetstream/Button'
     import JetInput from '@/Jetstream/Input'
     import JetCheckbox from '@/Jetstream/Checkbox'
@@ -52,8 +60,8 @@
 
     export default {
         components: {
-            JetAuthenticationCard,
-            JetAuthenticationCardLogo,
+            AuthenticationCard,
+            AuthenticationCardLogo,
             JetButton,
             JetInput,
             JetCheckbox,
