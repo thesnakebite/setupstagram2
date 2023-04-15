@@ -16,21 +16,16 @@
                                     </svg>
                                 </inertia-link>
                             </div>
-
-                            <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </jet-nav-link>
-                            </div>
                         </div>
 
                         <div class="ml-3 relative">
-                                <dropdown align="center" width="100" overflow="overflow-y-auto" maxHeight="300">
+                                <dropdown align="center" width="100" overflow="overflow-y-auto" maxHeight="300" class="mt-1">
                                     <template #trigger>
                                     <!-- This is an example component -->
                                     <div class="pt-2 relative mx-auto text-gray-600">
-                                        <input class="border-2 border-gray-300 bg-white w-100 h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" 
+                                        <input v-model="search"
+                                               on-keyup="userSearch" 
+                                               class="border-2 border-gray-300 bg-white w-100 h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" 
                                                placeholder="Buscar amigos...">
                                                 <span type="submit" class="absolute right-0 top-0 mt-5 mr-4">
                                                     <svg class="text-gray-600 h-4 w-4 fill-current" 
@@ -53,14 +48,22 @@
                                     </template>
 
                                     <template #content>
-                                        <a href="" 
-                                           class="flex items-center py-2 px-3 hover:bg-gray-100">
-                                            <img src="" alt="Luis">
-                                            <div class="ml-2">
-                                                <span class="block font-bold text-gray-700 text-sm">Luis12</span>
-                                                <span class="font-light text-gray-400 text-sm">Luis fernandez</span>
-                                            </div>
-                                        </a>
+
+                                        <inertia-link v-if="users.length > 0" v-for="(user,index) in users" :href="'/profile/'+user.nick_name" :key="index" class="flex items-center py-2 px-3 hover:bg-gray-100">
+                                            <img class="rounded-full w-9 h-9 object-cover" :src="user.profile_photo_url" :alt="user.name">
+                                                <div class="ml-2">
+                                                    <span class="block font-bold text-gray-700 text-sm">{{ user.nick_name }}</span>
+                                                    <span class="text-sm font-light text-gray-400">{{ user.name }}</span>
+                                                </div>
+                                        </inertia-link>
+
+                                        <div v-if="search == ''" class="py-2 px-3 flex items-center">
+                                            <span class="text-sm font-light text-gray-400">Busca a tus amigos...</span>
+                                        </div>
+                                        <div v-if="!userexists" class="py-2 px-3 flex items-center">
+                                            <span class="text-sm font-light text-gray-400">No existe un usuario</span>
+                                        </div>
+                                        
                                     </template>
                                 </dropdown>
                             </div>
@@ -255,17 +258,13 @@
                     </div>
                 </div>
             </nav>
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow" v-if="$slots.header">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <slot name="header"></slot>
-                </div>
-            </header>
-
             <!-- Page Content -->
             <main>
-                <slot></slot>
+                <div class="max-w-7x1 min-w-7x1 mx-auto py-14">
+                    <div class="flex justify-center">
+                     <slot></slot>
+                    </div>
+                </div>
             </main>
 
             <!-- Modal Portal -->
@@ -298,6 +297,9 @@
         data() {
             return {
                 showingNavigationDropdown: false,
+                user: [],
+                search: '',
+                userexists: true
             }
         },
 
@@ -312,6 +314,23 @@
 
             logout() {
                 this.$inertia.post(route('logout'));
+            },
+
+            async userSearch(){
+                if(this.search != ''){
+                    await axios.get('/search/'+this.search)
+                    .then(response => {
+                        if(response.data.length > 0 && Array.isArray(response.data)){
+                            this.userexists = true
+                            this.users = response.data
+                        }else{
+                            this.userexists = false
+                            this.users = []
+                        }
+                    })
+                }else{
+                    this.users = []
+                }
             },
         }
     }
