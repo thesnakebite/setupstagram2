@@ -41,8 +41,10 @@
                                 Error
                             </div>
                 </div>
-                <button v-if="text.length > 0 && image != null" class="w-full mb-5 my-3 text-center bg-blue-500 rounded text-white py-2 outline-none focus:outline-none hover:bg-blue-600">
-                    Publicar
+                <button @click="createPost"
+                        v-if="text.length > 0 && image != null" 
+                        class="w-full mb-5 my-3 text-center bg-blue-500 rounded text-white py-2 outline-none focus:outline-none hover:bg-blue-600">
+                        Publicar
                 </button>
             </div>
         </modal>
@@ -61,6 +63,7 @@
                 url: null,
                 image: null,
                 text: '',
+                posts: [],
             }
         },
 
@@ -73,14 +76,38 @@
             changedStateShowCreatePost() {
                 this.showModal = !this.showModal
             },
+
             fileschanges(e) {
                 let file = e.target.files[0]
                 this.image = file
                 this.url = URL.createObjectURL(file)
             },
+
             selectImage() {
                 document.getElementById('image').click();
             },
-        }
+
+            async createPost(){
+                const formData = new FormData()
+                formData.append('image', this.image)
+                formData.append('text', this.text)
+
+                await axios.post('/create-post', formData, {
+                    headers: {
+                        'Content-Type':'multipart/form-data'
+                    }
+                }).then((response) => {
+                    this.posts.unshift(response.data)
+                    this.resetData()
+                })
+            },
+
+            resetData(){
+                this.showModal = false
+                this.url = null
+                this.image = null
+                this.text = ''
+            },
+        },
     }
 </script>
