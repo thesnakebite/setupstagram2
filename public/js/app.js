@@ -3948,13 +3948,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Components_PostComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/PostComponent */ "./resources/js/Components/PostComponent.vue");
+/* harmony import */ var _Jetstream_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Modal */ "./resources/js/Jetstream/Modal.vue");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {};
+    return {
+      showModal: false,
+      url: null,
+      image: null,
+      text: ''
+    };
   },
   components: {
-    PostComponent: _Components_PostComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
+    PostComponent: _Components_PostComponent__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Modal: _Jetstream_Modal__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  methods: {
+    changedStateShowCreatePost: function changedStateShowCreatePost() {
+      this.showModal = !this.showModal;
+    },
+    fileschanges: function fileschanges(e) {
+      var file = e.target.files[0];
+      this.image = file;
+      this.url = URL.createObjectURL(file);
+    },
+    selectImage: function selectImage() {
+      document.getElementById('image').click();
+    }
   }
 });
 
@@ -5383,7 +5404,7 @@ var render = function render() {
   return _c("div", [_c("jet-banner"), _vm._v(" "), _c("div", {
     staticClass: "min-h-screen bg-gray-100"
   }, [_c("nav", {
-    staticClass: "bg-white border-b border-gray-100"
+    staticClass: "bg-white border-b border-gray-300"
   }, [_c("div", {
     staticClass: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
   }, [_c("div", {
@@ -7889,7 +7910,92 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl w-full"
-  }, [_c("post-component")], 1);
+  }, [_c("button", {
+    staticClass: "w-full mb-5 text-center bg-blue-500 rounded text-white py-2 outline-none focus:outline-none hover:bg-blue-600",
+    on: {
+      click: _vm.changedStateShowCreatePost
+    }
+  }, [_vm._v("\n        Agregar publicación\n    ")]), _vm._v(" "), _c("post-component"), _vm._v(" "), _c("modal", {
+    attrs: {
+      show: _vm.showModal
+    },
+    on: {
+      close: _vm.changedStateShowCreatePost
+    }
+  }, [_c("div", {
+    staticClass: "p-5"
+  }, [_c("div", {}, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.text,
+      expression: "text"
+    }],
+    staticClass: "w-full outline-none focus:outline-none p-2 rounded appearance-none border-none",
+    attrs: {
+      type: "text",
+      placeholder: "En que estas pensando?"
+    },
+    domProps: {
+      value: _vm.text
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.text = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "my-5"
+  }, [_vm.url ? _c("img", {
+    staticStyle: {
+      "max-width": "100%",
+      "max-height": "400px",
+      margin: "0 auto"
+    },
+    attrs: {
+      src: _vm.url
+    }
+  }) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "flex justify-end"
+  }, [_c("button", {
+    staticClass: "outline-none focus:outline-none inline-flex items-center rounded-full cursor-pointer bg-blue-500 p-2",
+    on: {
+      click: _vm.selectImage
+    }
+  }, [_c("svg", {
+    staticClass: "text-white w-7 h-7",
+    attrs: {
+      xmlns: "http://www.w3.org/2000/svg",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      "stroke-width": "1.5",
+      stroke: "currentColor"
+    }
+  }, [_c("path", {
+    attrs: {
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round",
+      d: "M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+    }
+  })])]), _vm._v(" "), _c("input", {
+    staticStyle: {
+      display: "none"
+    },
+    attrs: {
+      id: "image",
+      type: "file",
+      name: "image",
+      accept: "image/gif,image/jpg,image/png,image/jpeg"
+    },
+    on: {
+      change: _vm.fileschanges
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "text-red-500 p-2 mt-5"
+  }, [_vm._v("\n                            Error\n                        ")])]), _vm._v(" "), _vm.text.length > 0 && _vm.image != null ? _c("button", {
+    staticClass: "w-full mb-5 my-3 text-center bg-blue-500 rounded text-white py-2 outline-none focus:outline-none hover:bg-blue-600"
+  }, [_vm._v("\n                Publicar\n            ")]) : _vm._e()])])], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
