@@ -6,16 +6,18 @@
 
                 <div class="col-span-2 w-full">
                     <img class="w-full max-w-full min-w-full"
-                        src="https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-                        alt="Description">
+                        :src="post.image_path"
+                        :alt="post.description">
                 </div>
 
                 <div class="col-span-1 relative pl-4">
                     <header class="border-b border-grey-400">
                         <a href="#" class="block cursor-pointer py-4 flex items-center text-sm outline-none focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                            <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" class="h-9 w-9 rounded-full object-cover"
-                            alt="user" />
-                            <p class="block ml-2 font-bold">Paul</p>
+                            <img :src="post.user.profile_photo_url"
+                                 :alt="post.user.nick_name" />
+                            <p class="block ml-2 font-bold">
+                                {{ post.user.nick_name }}
+                            </p>
                         </a>
                     </header>
 
@@ -37,20 +39,14 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="text-sm mb-2 flex flex-start items-center">
-                            <div>
-                                <a href="#" class="cursor-pointer flex items-center text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                    <img class="h-8 w-8 rounded-full object-cover"
-                                    src="https://images.pexels.com/photos/3861456/pexels-photo-3861456.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-                                    alt="user" />
-                                </a>
+                        <div class="">
+                            <div class="pt-1">
+                                <comments :comment="post.description" 
+                                          :nickName="post.user.nick_name" 
+                                          :urlImage="post.user.profile_photo_url">
+                                </comments>
                             </div>
-                            <p class="font-bold ml-2">
-                                <a class="cursor-pointer">Kesha:</a>
-                                <span class="text-gray-700 font-medium ml-1">
-                                    This is amazing
-                                </span>
-                            </p>
+                           
                         </div>
                     </div>
 
@@ -93,9 +89,11 @@
 </template>
 
 <script>
-    import Comments from '@/Components/Comments';
-    import Modal from '@/Jetstream/Modal';
-import Input from '../Jetstream/Input.vue';
+    import Comments from '@/Components/Comments'
+    import Modal from '@/Jetstream/Modal'
+    import Input from '../Jetstream/Input.vue'
+    import moment from 'moment'
+
 
     export default {
   

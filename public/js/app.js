@@ -2174,6 +2174,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Comments__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Comments */ "./resources/js/Components/Comments.vue");
 /* harmony import */ var _Jetstream_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Modal */ "./resources/js/Jetstream/Modal.vue");
 /* harmony import */ var _Jetstream_Input_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Jetstream/Input.vue */ "./resources/js/Jetstream/Input.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -4393,8 +4396,8 @@ var render = function render() {
   }, [_c("img", {
     staticClass: "w-full max-w-full min-w-full",
     attrs: {
-      src: "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
-      alt: "Description"
+      src: _vm.post.image_path,
+      alt: _vm.post.description
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "col-span-1 relative pl-4"
@@ -4406,14 +4409,13 @@ var render = function render() {
       href: "#"
     }
   }, [_c("img", {
-    staticClass: "h-9 w-9 rounded-full object-cover",
     attrs: {
-      src: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
-      alt: "user"
+      src: _vm.post.user.profile_photo_url,
+      alt: _vm.post.user.nick_name
     }
   }), _vm._v(" "), _c("p", {
     staticClass: "block ml-2 font-bold"
-  }, [_vm._v("Paul")])])]), _vm._v(" "), _c("div", [_c("div", {
+  }, [_vm._v("\n                            " + _vm._s(_vm.post.user.nick_name) + "\n                        ")])])]), _vm._v(" "), _c("div", [_c("div", {
     staticClass: "pt-1"
   }, [_c("div", {
     staticClass: "text-sm mb-2 flex flex-start items-center"
@@ -4434,26 +4436,15 @@ var render = function render() {
     staticClass: "cursor-pointer"
   }, [_vm._v("Joshua:")]), _vm._v(" "), _c("span", {
     staticClass: "text-gray-700 font-medium ml-1"
-  }, [_vm._v("\n                                    Good post\n                                ")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "text-sm mb-2 flex flex-start items-center"
-  }, [_c("div", [_c("a", {
-    staticClass: "cursor-pointer flex items-center text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out",
+  }, [_vm._v("\n                                    Good post\n                                ")])])])]), _vm._v(" "), _c("div", {}, [_c("div", {
+    staticClass: "pt-1"
+  }, [_c("comments", {
     attrs: {
-      href: "#"
+      comment: _vm.post.description,
+      nickName: _vm.post.user.nick_name,
+      urlImage: _vm.post.user.profile_photo_url
     }
-  }, [_c("img", {
-    staticClass: "h-8 w-8 rounded-full object-cover",
-    attrs: {
-      src: "https://images.pexels.com/photos/3861456/pexels-photo-3861456.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
-      alt: "user"
-    }
-  })])]), _vm._v(" "), _c("p", {
-    staticClass: "font-bold ml-2"
-  }, [_c("a", {
-    staticClass: "cursor-pointer"
-  }, [_vm._v("Kesha:")]), _vm._v(" "), _c("span", {
-    staticClass: "text-gray-700 font-medium ml-1"
-  }, [_vm._v("\n                                This is amazing\n                            ")])])])]), _vm._v(" "), _c("div", {
+  })], 1)])]), _vm._v(" "), _c("div", {
     staticClass: "absolute bottom-0 left-0 right-0 pl-4"
   }, [_c("div", {
     staticClass: "pt-4"
