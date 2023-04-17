@@ -68,4 +68,18 @@ class Post extends Model
             'likes'
         ])->find($post->id);
     }
+
+    public static function getPosts($id)
+    {
+        return (new static)::with([
+            'user',
+            'comments' => function($query) {
+                $query->with('user:id, name, nick_name, profile_photo_path');
+            },
+            'likes'
+        ])->where('user_id', $id)
+          ->orWhereIn('user_id', Follower::select('user_id')->where('follower_id', $id)->get())
+          ->orderBy('created_at', 'desc')
+          ->get();
+    }
 }

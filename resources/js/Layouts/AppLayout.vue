@@ -48,13 +48,12 @@
                                     </template>
 
                                     <template #content>
-
-                                        <inertia-link v-if="users.length > 0" v-for="(user,index) in users" :href="'/profile/'+user.nick_name" :key="index" class="flex items-center py-2 px-3 hover:bg-gray-100">
+                                        <inertia-link v-if="users.length > 0" v-for="(user,index) in users" :href="'/profile/'+user.nick_name" :key="index" class="block flex items-center py-2 px-3 hover:bg-gray-100">
                                             <img class="rounded-full w-9 h-9 object-cover" :src="user.profile_photo_url" :alt="user.name">
-                                                <div class="ml-2">
-                                                    <span class="block font-bold text-gray-700 text-sm">{{ user.nick_name }}</span>
-                                                    <span class="text-sm font-light text-gray-400">{{ user.name }}</span>
-                                                </div>
+                                            <div class="ml-2">
+                                                <span class="block font-bold text-gray-700 text-sm">{{ user.nick_name }}</span>
+                                                <span class="text-sm font-light text-gray-400">{{ user.name }}</span>
+                                            </div>
                                         </inertia-link>
 
                                         <div v-if="search == ''" class="py-2 px-3 flex items-center">
@@ -63,8 +62,8 @@
                                         <div v-if="!userexists" class="py-2 px-3 flex items-center">
                                             <span class="text-sm font-light text-gray-400">No existe un usuario</span>
                                         </div>
-                                        
                                     </template>
+
                                 </dropdown>
                             </div>
 
@@ -297,7 +296,7 @@
         data() {
             return {
                 showingNavigationDropdown: false,
-                user: [],
+                users: [],
                 search: '',
                 userexists: true
             }

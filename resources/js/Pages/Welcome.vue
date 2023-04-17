@@ -4,7 +4,13 @@
                 class="w-full mb-5 text-center bg-blue-500 rounded text-white py-2 outline-none focus:outline-none hover:bg-blue-600">
             Agregar publicación
         </button>
-        <post-component></post-component>
+        <div v-if="posts.length > 0">
+            <post-component v-for="(post, index) in posts" :key="index"
+                :post="post" @post="setPost">
+            </post-component>
+        </div>
+
+        <div v-else class="text-3xl">No hay publicaciones</div>
 
         <modal :show="showModal" @close="changedStateShowCreatePost">
             <div class="p-5">
@@ -37,7 +43,7 @@
                                         style="display: none;" 
                                 />
                             </div>
-                            <div class="text-red-500 p-2 mt-5">
+                            <div class="text-red-500 p-2 mt-5 font-medium">
                                 {{ this.error }}
                             </div>
                 </div>
@@ -64,7 +70,7 @@
                 image: null,
                 text: '',
                 posts: [],
-                error: null,
+                error: null
             }
         },
 
@@ -74,6 +80,14 @@
         },
 
         methods: {
+            
+            async getPosts(){
+                await axios.get('/list-posts')
+                .then(response => {
+                    this.posts = response.data
+                })
+            },
+
             changedStateShowCreatePost() {
                 this.showModal = !this.showModal
             },
@@ -105,13 +119,16 @@
                     if(error.response.status === 422){
                         this.error = error.response.data.errors.image[0]
 
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             this.error = null
                         },5000)
                     }
                 })
             },
             
+        },
+        created() {
+            this.getPosts()
         },
     }
 </script>

@@ -24,7 +24,7 @@ class ImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required|mimes:jpg,jpeg,png|max:2000'
+            'image' => 'required|mimes:jpg,png,jpeg|max:2000'
         ];
     }
 
@@ -33,7 +33,7 @@ class ImageRequest extends FormRequest
         return [
             'image.required' => 'Tiene que seleccionar una imagen',
             'image.mimes' => 'La imagen tiene un formato no valido',
-            'image.max' => 'La imagen no debe exceder de 2MB'
+            'image.max' => 'La imagen no debe exceder de 2MB',
         ];
     }
 }
