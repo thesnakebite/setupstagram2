@@ -259,7 +259,7 @@
             </nav>
             <!-- Page Content -->
             <main>
-                <div class="max-w-7x1 min-w-7x1 mx-auto py-14">
+                <div class="max-w-7xl min-w-7xl mx-auto py-14">
                     <div class="flex justify-center">
                      <slot></slot>
                     </div>

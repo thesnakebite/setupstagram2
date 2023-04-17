@@ -1,18 +1,22 @@
 <template>
     <div class="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl w-full">
-        <button @click="changedStateShowCreatePost" 
+        <button @click="changeStateShowCreatePost" 
                 class="w-full mb-5 text-center bg-blue-500 rounded text-white py-2 outline-none focus:outline-none hover:bg-blue-600">
             Agregar publicación
         </button>
         <div v-if="posts.length > 0">
-            <post-component v-for="(post, index) in posts" :key="index"
-                :post="post" @post="setPost">
+            <post-component v-for="(post, index) in posts" 
+                :key="index" 
+                :post="post" 
+                @post="setPost">
             </post-component>
         </div>
 
         <div v-else class="text-3xl">No hay publicaciones</div>
 
-        <modal :show="showModal" @close="changedStateShowCreatePost">
+        <modal-post :show="show" :post="post" @show="changeStateModalPost"></modal-post>
+
+        <modal :show="showModal" @close="changeStateShowCreatePost">
             <div class="p-5">
                 <div class="">
                     <input v-model="text" 
@@ -58,24 +62,28 @@
 </template>
 
 <script>
-    import PostComponent from '@/Components/PostComponent';
-    import Modal from '@/Jetstream/Modal';
+    import PostComponent from '@/Components/PostComponent'
+    import ModalPost from '@/Components/ModalPost'
+    import Modal from '@/Jetstream/Modal'
 
     export default {
   
         data() {
             return {
                 showModal: false,
+                show: false,
                 url: null,
                 image: null,
                 text: '',
                 posts: [],
+                post: [],
                 error: null
             }
         },
 
         components: { 
             PostComponent,
+            ModalPost,
             Modal,
         },
 
@@ -88,7 +96,11 @@
                 })
             },
 
-            changedStateShowCreatePost() {
+            changeStateModalPost(){
+                this.show = !this.show
+            },
+
+            changeStateShowCreatePost(){
                 this.showModal = !this.showModal
             },
 
@@ -125,6 +137,18 @@
                     }
                 })
             },
+
+            resetData(){
+                this.showModal = false,
+                this.url = null,
+                this.image = null,
+                this.text = ''
+            },
+
+            setPost(post){
+                this.show = !this.show
+                this.post = post
+            }
             
         },
         created() {
