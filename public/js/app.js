@@ -3962,7 +3962,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       url: null,
       image: null,
       text: '',
-      posts: []
+      posts: [],
+      error: null
     };
   },
   components: {
@@ -3999,6 +4000,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }).then(function (response) {
                 _this.posts.unshift(response.data);
                 _this.resetData();
+              })["catch"](function (error) {
+                if (error.response.status === 422) {
+                  _this.error = error.response.data.errors.image[0];
+                  setTimeout(function () {
+                    _this.error = null;
+                  }, 5000);
+                }
               });
             case 5:
             case "end":
@@ -4006,12 +4014,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
-    },
-    resetData: function resetData() {
-      this.showModal = false;
-      this.url = null;
-      this.image = null;
-      this.text = '';
     }
   }
 });
@@ -8030,7 +8032,7 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "text-red-500 p-2 mt-5"
-  }, [_vm._v("\n                            Error\n                        ")])]), _vm._v(" "), _vm.text.length > 0 && _vm.image != null ? _c("button", {
+  }, [_vm._v("\n                            " + _vm._s(this.error) + "\n                        ")])]), _vm._v(" "), _vm.text.length > 0 && _vm.image != null ? _c("button", {
     staticClass: "w-full mb-5 my-3 text-center bg-blue-500 rounded text-white py-2 outline-none focus:outline-none hover:bg-blue-600",
     on: {
       click: _vm.createPost

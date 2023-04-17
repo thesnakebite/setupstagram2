@@ -38,7 +38,7 @@
                                 />
                             </div>
                             <div class="text-red-500 p-2 mt-5">
-                                Error
+                                {{ this.error }}
                             </div>
                 </div>
                 <button @click="createPost"
@@ -64,6 +64,7 @@
                 image: null,
                 text: '',
                 posts: [],
+                error: null,
             }
         },
 
@@ -89,25 +90,28 @@
 
             async createPost(){
                 const formData = new FormData()
-                formData.append('image', this.image)
-                formData.append('text', this.text)
+                formData.append('image',this.image)
+                formData.append('text',this.text)
 
-                await axios.post('/create-post', formData, {
-                    headers: {
+                await axios.post('/create-post',formData,{
+                    headers:{
                         'Content-Type':'multipart/form-data'
                     }
                 }).then((response) => {
                     this.posts.unshift(response.data)
+
                     this.resetData()
+                }).catch(error => {
+                    if(error.response.status === 422){
+                        this.error = error.response.data.errors.image[0]
+
+                        setTimeout(()=>{
+                            this.error = null
+                        },5000)
+                    }
                 })
             },
-
-            resetData(){
-                this.showModal = false
-                this.url = null
-                this.image = null
-                this.text = ''
-            },
+            
         },
     }
 </script>

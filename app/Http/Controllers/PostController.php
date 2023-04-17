@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ImageRequest;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
@@ -21,7 +22,7 @@ class PostController extends Controller
         $this->likes = $likes;
     }
 
-    public function createPost(Request $request)
+    public function createPost(ImageRequest $request)
     {
         try {
             DB::beginTransaction();
