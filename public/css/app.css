@@ -22582,6 +22582,14 @@ select {
   fill: currentColor;
 }
 
+.hover\:fill-current:hover {
+  fill: currentColor;
+}
+
+.focus\:fill-current:focus {
+  fill: currentColor;
+}
+
 .stroke-current {
   stroke: currentColor;
 }
@@ -54189,6 +54197,14 @@ select {
     fill: currentColor;
   }
 
+  .sm\:hover\:fill-current:hover {
+    fill: currentColor;
+  }
+
+  .sm\:focus\:fill-current:focus {
+    fill: currentColor;
+  }
+
   .sm\:stroke-current {
     stroke: currentColor;
   }
@@ -85781,6 +85797,14 @@ select {
   }
 
   .md\:fill-current {
+    fill: currentColor;
+  }
+
+  .md\:hover\:fill-current:hover {
+    fill: currentColor;
+  }
+
+  .md\:focus\:fill-current:focus {
     fill: currentColor;
   }
 
@@ -117379,6 +117403,14 @@ select {
     fill: currentColor;
   }
 
+  .lg\:hover\:fill-current:hover {
+    fill: currentColor;
+  }
+
+  .lg\:focus\:fill-current:focus {
+    fill: currentColor;
+  }
+
   .lg\:stroke-current {
     stroke: currentColor;
   }
@@ -148974,6 +149006,14 @@ select {
     fill: currentColor;
   }
 
+  .xl\:hover\:fill-current:hover {
+    fill: currentColor;
+  }
+
+  .xl\:focus\:fill-current:focus {
+    fill: currentColor;
+  }
+
   .xl\:stroke-current {
     stroke: currentColor;
   }
@@ -180566,6 +180606,14 @@ select {
   }
 
   .\32xl\:fill-current {
+    fill: currentColor;
+  }
+
+  .\32xl\:hover\:fill-current:hover {
+    fill: currentColor;
+  }
+
+  .\32xl\:focus\:fill-current:focus {
     fill: currentColor;
   }
 

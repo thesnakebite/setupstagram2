@@ -23,4 +23,20 @@ class Like extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public static function like($postId, $userId)
+    {
+        return (new static)::create([
+            'post_id' => $postId,
+            'user_id' => $userId,
+        ]); 
+    }
+
+    public static function deleteLike($postId, $userId)
+    {
+        (new static)::where([
+            'post_id' => $postId,
+            'user_id' => $userId,
+        ])->delete();
+    }
 }

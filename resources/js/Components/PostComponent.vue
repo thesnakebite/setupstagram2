@@ -4,7 +4,8 @@
             <div>
                 <inertia-link :href="'/profile/'+post.user.nick_name" class="cursor-pointer m-4 flex items-center text-sm outline-none focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                     <img :src="post.user.profile_photo_url"
-                    :alt="post.user.name" class="h-8 w-8 rounded-full object-cover"/>
+                         :alt="post.user.name" class="h-8 w-8 rounded-full object-cover" 
+                    />
                     <div>
                         <p class="block ml-2 font-bold">{{ post.user.nick_name }}</p>
                         <span class="block ml-2 text-xs text-gray-600">{{ getDifferenceTime(post.created_at) }}</span>
@@ -12,6 +13,7 @@
                 </inertia-link>
             </div>
         </header>
+        
         <img class="w-full max-w-full min-w-full"
              :src="post.image_path" 
              :alt="post.description">
@@ -19,10 +21,14 @@
         <div class="px-6 pt-4">
             <div class="mb-2">
                 <div class="flex items-center">
-                    <span @click="likeDislike" 
-                          class="mr-3 inline-flex items-center cursor-pointer">
+                    <span @click="likeDislike" class="mr-3 inline-flex items-center cursor-pointer">
                         <svg class="text-red-500 inline-block h-7 w-7" 
-                             :class="[post.likes.find(like => like.user_id === $page.props.user.id) ? 'fill-current' : 'hover:fill-current']" 
+                             :class="[
+                                post.likes.find(like => like.user_id === $page.props.user.id) ? 
+                                'fill-current'
+                                : 
+                                'hover:fill-current'
+                                ]" 
                              xmlns="http://www.w3.org/2000/svg" 
                              fill="none" 
                              viewBox="0 0 24 24" 
@@ -58,14 +64,19 @@
 
         <div class="px-6 pt-4 pb-3">
             <div class="flex items-start">
-                <input v-model="textComment" 
+                <input 
+                       v-model="textComment" 
                        class="w-full resize-none outline-none appearance-none" 
                        aria-label="Agrega un comentario..." 
                        placeholder="Agrega un comentario..."  
                        autocomplete="off" 
                        autocorrect="off" 
                        style="height: 36px;" />
-                       <button v-if="textComment.length > 0" @click="comment($page.props.user.id)" class="mb-2 focus:outline-none border-none bg-transparent text-blue-600">Publicar</button>
+                       <button v-if="textComment.length > 0" 
+                               @click="comment($page.props.user.id)" 
+                               class="mb-2 focus:outline-none border-none bg-transparent font-bold text-blue-600">
+                               Publicar
+                       </button>
             </div>
         </div>
     </div>
@@ -98,16 +109,18 @@ export default {
         },
 
         async likeDislike(){
-            await axios.post('/like-post',{post_id: this.post.id})
-                .then(response => {
-                    this.post.likes = response.data.likes
+            await axios.post('/like-post',{
+                post_id: this.post.id
+            }).then(response => {
+                this.post.likes = response.data.likes
+
                     if(response.data.like){
                         this.post.countLikes++
                     }else{
                         --this.post.countLikes
                     }
                 })
-        },
+            },
 
         async comment(userId){
             await axios.post('/comment',{post_id:this.post.id,user_id:userId,comment:this.textComment})
@@ -116,7 +129,7 @@ export default {
                     this.post.countComments++
                     this.textComment = ''
                 })
-        }
-    },
+            },
+        },
 }
 </script>
