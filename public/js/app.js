@@ -4139,6 +4139,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['user', 'followers', 'followed', 'postsCount'],
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -8403,8 +8404,8 @@ var render = function render() {
   }, [_c("img", {
     staticClass: "h-40 w-40 rounded-full object-cover",
     attrs: {
-      src: "https://images.pexels.com/photos/3278968/pexels-photo-3278968.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
-      alt: "username"
+      src: _vm.user.profile_photo_url,
+      alt: _vm.user.nick_name
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "ml-10"
@@ -8412,7 +8413,7 @@ var render = function render() {
     staticClass: "flex items-center"
   }, [_c("h2", {
     staticClass: "block leading-relaxed font-light text-gray-700 text-3xl"
-  }, [_vm._v("Darcy")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n                            " + _vm._s(_vm.user.nick_name) + "\n                        ")]), _vm._v(" "), _c("a", {
     staticClass: "cursor-pointer h-7 px-3 ml-3 outline-none border-transparent text-center rounded border bg-blue-500 hover:bg-blue-600 text-white bg-transparent font-semibold"
   }, [_vm._v("Enviar mensaje")]), _vm._v(" "), _c("a", {
     staticClass: "cursor-pointer h-7 px-3 ml-3 focus:outline-none hover:border-transparent text-center rounded border border-gray-400 hover:bg-blue-500 hover:text-white bg-transparent text-gray-500 font-semibold"
@@ -8435,53 +8436,31 @@ var render = function render() {
       "stroke-width": "2",
       d: "M5 13l4 4L19 7"
     }
-  })])]), _vm._v(" "), _c("a", {
-    staticClass: "cursor-pointer ml-2 p-1 border-transparent text-gray-700 rounded-full hover:text-blue-600 focus:outline-none focus:text-gray-600",
-    attrs: {
-      "aria-label": "Notifications"
-    }
-  }, [_c("svg", {
-    staticClass: "h-8 w-8",
-    attrs: {
-      fill: "none",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round",
-      "stroke-width": "1.5",
-      stroke: "currentColor",
-      viewBox: "0 0 24 24"
-    }
-  }, [_c("path", {
-    attrs: {
-      d: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-    }
-  }), _vm._v(" "), _c("path", {
-    attrs: {
-      d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-    }
   })])])]), _vm._v(" "), _c("ul", {
     staticClass: "flex justify-content-around items-center"
   }, [_c("li", [_c("span", {
-    staticClass: "block text-base flex"
+    staticClass: "flex text-base"
   }, [_c("span", {
     staticClass: "font-bold mr-2"
-  }, [_vm._v("23 ")]), _vm._v(" Posts")])]), _vm._v(" "), _c("li", [_c("span", {
-    staticClass: "cursor-pointer block text-base flex ml-5"
+  }, [_vm._v(_vm._s(_vm.postsCount))]), _vm._v("\n                                Publicaciones\n                            ")])]), _vm._v(" "), _c("li", [_c("span", {
+    staticClass: "flex cursor-pointer text-base ml-5"
   }, [_c("span", {
     staticClass: "font-bold mr-2"
-  }, [_vm._v("102k ")]), _vm._v(" Followers")])]), _vm._v(" "), _c("li", [_c("span", {
-    staticClass: "cursor-pointer block text-base flex ml-5"
+  }, [_vm._v(_vm._s(_vm.followers))]), _vm._v("\n                                Seguidor\n                            ")])]), _vm._v(" "), _c("li", [_c("span", {
+    staticClass: "flex cursor-pointer text-base ml-5"
   }, [_c("span", {
     staticClass: "font-bold mr-2"
-  }, [_vm._v("654 ")]), _vm._v(" followed")])])]), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", {}, [_c("h1", {
-    staticClass: "text-base font-bold font-light"
-  }, [_vm._v("Darcy")]), _vm._v(" "), _c("span", {
+  }, [_vm._v(_vm._s(_vm.followed))]), _vm._v("\n                                Seguidos\n                            ")])])]), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", {}, [_c("h1", {
+    staticClass: "text-base font-bold"
+  }, [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _c("span", {
     staticClass: "text-base"
-  }, [_vm._v("I am Darcy, I like music, and record videos")]), _vm._v(" "), _c("a", {
+  }, [_vm._v(_vm._s(_vm.user.presentation))]), _vm._v(" "), _c("a", {
     staticClass: "block text-base text-blue-500 mt-2",
     attrs: {
+      href: _vm.user.web_site,
       target: "_blank"
     }
-  }, [_vm._v("https://tailwindcomponents.com/")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                           " + _vm._s(_vm.user.web_site) + "\n                        ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "border-b border-gray-300"
   }), _vm._v(" "), _c("article", {
     staticClass: "mt-5 grid grid-cols-3 gap-10"

@@ -18,8 +18,19 @@ class ProfileController extends Controller
         $this->followers = $followers;
     }
 
-    public function index()
+    public function index($nick_name)
     {
-        return Inertia::render('UserProfile/Index');
+        $user = $this->user->where('nick_name', $nick_name)->first();
+
+        $followers = $user->followers()->count();
+        $followed = $this->followers->where('follower_id', $user->id)->count();
+        $posts = $user->posts()->count();
+
+        return Inertia::render('UserProfile/Index', [
+            'user' => $user,
+            'followers' => $followers,
+            'followed' => $followed,
+            'postsCount' => $posts
+        ]);
     }
 }
