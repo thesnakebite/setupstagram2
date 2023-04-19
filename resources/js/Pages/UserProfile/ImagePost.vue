@@ -1,5 +1,8 @@
 <template>
-    <div class="cursor-pointer relative" style="width:300px; height:300px" id="post-profile">
+    <div @click="changeStateSetPost"
+         class="cursor-pointer relative" 
+         style="width:300px; height:300px" 
+         id="post-profile">
         <img :src="post.image_path"
             class="foto w-full h-full object-cover"
             :alt="post.description" />
@@ -36,6 +39,12 @@
     export default {
 
         props: ['post'],
+
+        methods: {
+            changeStateSetPost(){
+                this.$emit('show', this.post)
+            }
+        }
 
     }
 </script>

@@ -1,18 +1,22 @@
 <template>
     <app-layout>
         <!-- component -->
-        <div class="w-7/12">
+        <div class="w-10/12">
             <div class="flex justify-center pb-10">
-                    <img :src="user.profile_photo_url"
+                    <img :src="userProfile.profile_photo_url"
                         class="h-40 w-40 rounded-full object-cover"
-                        :alt="user.nick_name"/>
+                        :alt="userProfile.nick_name"/>
                     <div class="ml-10">
                         <div class="flex items-center">
                             <h2 class="block leading-relaxed font-light text-gray-700 text-3xl">
-                                {{ user.nick_name }}
+                                {{ userProfile.nick_name }}
                             </h2>
                             <a class="cursor-pointer h-7 px-3 ml-3 outline-none border-transparent text-center rounded border bg-blue-500 hover:bg-blue-600 text-white bg-transparent font-semibold">Enviar mensaje</a>
-                            <a class="cursor-pointer h-7 px-3 ml-3 focus:outline-none hover:border-transparent text-center rounded border border-gray-400 hover:bg-blue-500 hover:text-white bg-transparent text-gray-500 font-semibold">Editar perfil</a>
+                            <inertia-link v-if="userProfile.id === $page.props.user.id"
+                                          href="/user/profile/" 
+                                          class="cursor-pointer h-7 px-3 ml-3 focus:outline-none hover:border-transparent text-center rounded border border-gray-400 hover:bg-blue-500 hover:text-white bg-transparent text-gray-500 font-semibold">
+                                Editar perfil
+                            </inertia-link>
                             
                             <button class="flex items-center ml-3 border border-blue-600 hover:bg-blue-600 hover:text-white rounded outline-none focus:outline-none bg-transparent text-blue-600 text-sm py-1 px-2">
                                 <span class="block">Seguir</span>
@@ -43,24 +47,26 @@
                         </ul>
                         <br>
                         <div class="">
-                            <h1 class="text-base font-bold">{{ user.name }}</h1>
-                            <span class="text-base">{{ user.presentation}}</span>
-                            <a :href="user.web_site" 
+                            <h1 class="text-base font-bold">{{ userProfile.name }}</h1>
+                            <span class="text-base">{{ userProfile.presentation}}</span>
+                            <a :href="userProfile.web_site" 
                                class="block text-base text-blue-500 mt-2" 
                                target="_blank">
-                               {{ user.web_site }}
+                               {{ userProfile.web_site }}
                             </a>
                         </div>
                     </div>
             </div>
             <div class="border-b border-gray-300"></div>
-            <article v-if="posts.length > 0" class="mt-5 grid grid-cols-3 gap-10">
+            <article v-if="posts.length > 0" class="mt-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
 
                 <!-- Listado de posts -->
-                <image-post v-for="(post, index) in posts" :key="index" :post="post"></image-post>
+                <image-post v-for="(post, index) in posts" :key="index" :post="post" @show="changeStateModalPost"></image-post>
                 
             </article>
             <div v-else class="w-full text-center text-3xl pt-10">No hay publicaciones</div>
+
+            <modal-post :show="show" :post="post" @show="changeState"></modal-post>
         </div>
     </app-layout>
 </template>
@@ -68,11 +74,19 @@
 <script>
     import AppLayout from '@/Layouts/AppLayout'
     import ImagePost from '@/Pages/UserProfile/ImagePost'
+    import ModalPost from '@/Components/ModalPost'
 
     export default {
 
+        data() {
+            return {
+                show: false,
+                post: [],
+            }
+        },
+
         props: [
-            'user',
+            'userProfile',
             'followers',
             'followed',
             'postsCount',
@@ -82,6 +96,18 @@
         components: {
             AppLayout,
             ImagePost,
+            ModalPost,
+        },
+
+        methods: {
+            changeStateModalPost(post){
+                this.post = post
+                this.show = !this.show
+            },
+
+            changeState(){
+                this.show = !this.show
+            },
         }
     }
 

@@ -29,7 +29,7 @@ class ProfileController extends Controller
         $posts = Post::getPosts($user->id, true);
 
         return Inertia::render('UserProfile/Index', [
-            'user' => $user,
+            'userProfile' => $user,
             'followers' => $followers,
             'followed' => $followed,
             'postsCount' => $postsCount,

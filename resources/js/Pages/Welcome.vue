@@ -2,7 +2,7 @@
     <div class="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl w-full">
         <button @click="changeStateShowCreatePost" 
                 class="w-full mb-5 text-center bg-blue-500 rounded text-white py-2 outline-none focus:outline-none hover:bg-blue-600">
-            Agregar publicación
+                Agregar publicación
         </button>
         <div v-if="posts.length > 0">
             <post-component v-for="(post, index) in posts" 

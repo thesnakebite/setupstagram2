@@ -4137,7 +4137,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['post']
+  props: ['post'],
+  methods: {
+    changeStateSetPost: function changeStateSetPost() {
+      this.$emit('show', this.post);
+    }
+  }
 });
 
 /***/ }),
@@ -4155,13 +4160,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _Pages_UserProfile_ImagePost__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/UserProfile/ImagePost */ "./resources/js/Pages/UserProfile/ImagePost.vue");
+/* harmony import */ var _Components_ModalPost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/ModalPost */ "./resources/js/Components/ModalPost.vue");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['user', 'followers', 'followed', 'postsCount', 'posts'],
+  data: function data() {
+    return {
+      show: false,
+      post: []
+    };
+  },
+  props: ['userProfile', 'followers', 'followed', 'postsCount', 'posts'],
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    ImagePost: _Pages_UserProfile_ImagePost__WEBPACK_IMPORTED_MODULE_1__["default"]
+    ImagePost: _Pages_UserProfile_ImagePost__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ModalPost: _Components_ModalPost__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  methods: {
+    changeStateModalPost: function changeStateModalPost(post) {
+      this.post = post;
+      this.show = !this.show;
+    },
+    changeState: function changeState() {
+      this.show = !this.show;
+    }
   }
 });
 
@@ -8425,6 +8448,9 @@ var render = function render() {
     },
     attrs: {
       id: "post-profile"
+    },
+    on: {
+      click: _vm.changeStateSetPost
     }
   }, [_c("img", {
     staticClass: "foto w-full h-full object-cover",
@@ -8497,14 +8523,14 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("app-layout", [_c("div", {
-    staticClass: "w-7/12"
+    staticClass: "w-10/12"
   }, [_c("div", {
     staticClass: "flex justify-center pb-10"
   }, [_c("img", {
     staticClass: "h-40 w-40 rounded-full object-cover",
     attrs: {
-      src: _vm.user.profile_photo_url,
-      alt: _vm.user.nick_name
+      src: _vm.userProfile.profile_photo_url,
+      alt: _vm.userProfile.nick_name
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "ml-10"
@@ -8512,11 +8538,14 @@ var render = function render() {
     staticClass: "flex items-center"
   }, [_c("h2", {
     staticClass: "block leading-relaxed font-light text-gray-700 text-3xl"
-  }, [_vm._v("\n                            " + _vm._s(_vm.user.nick_name) + "\n                        ")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n                            " + _vm._s(_vm.userProfile.nick_name) + "\n                        ")]), _vm._v(" "), _c("a", {
     staticClass: "cursor-pointer h-7 px-3 ml-3 outline-none border-transparent text-center rounded border bg-blue-500 hover:bg-blue-600 text-white bg-transparent font-semibold"
-  }, [_vm._v("Enviar mensaje")]), _vm._v(" "), _c("a", {
-    staticClass: "cursor-pointer h-7 px-3 ml-3 focus:outline-none hover:border-transparent text-center rounded border border-gray-400 hover:bg-blue-500 hover:text-white bg-transparent text-gray-500 font-semibold"
-  }, [_vm._v("Editar perfil")]), _vm._v(" "), _c("button", {
+  }, [_vm._v("Enviar mensaje")]), _vm._v(" "), _vm.userProfile.id === _vm.$page.props.user.id ? _c("inertia-link", {
+    staticClass: "cursor-pointer h-7 px-3 ml-3 focus:outline-none hover:border-transparent text-center rounded border border-gray-400 hover:bg-blue-500 hover:text-white bg-transparent text-gray-500 font-semibold",
+    attrs: {
+      href: "/user/profile/"
+    }
+  }, [_vm._v("\n                            Editar perfil\n                        ")]) : _vm._e(), _vm._v(" "), _c("button", {
     staticClass: "flex items-center ml-3 border border-blue-600 hover:bg-blue-600 hover:text-white rounded outline-none focus:outline-none bg-transparent text-blue-600 text-sm py-1 px-2"
   }, [_c("span", {
     staticClass: "block"
@@ -8535,7 +8564,7 @@ var render = function render() {
       "stroke-width": "2",
       d: "M5 13l4 4L19 7"
     }
-  })])])]), _vm._v(" "), _c("ul", {
+  })])])], 1), _vm._v(" "), _c("ul", {
     staticClass: "flex justify-content-around items-center"
   }, [_c("li", [_c("span", {
     staticClass: "flex text-base"
@@ -8551,28 +8580,39 @@ var render = function render() {
     staticClass: "font-bold mr-2"
   }, [_vm._v(_vm._s(_vm.followed))]), _vm._v("\n                                Seguidos\n                            ")])])]), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", {}, [_c("h1", {
     staticClass: "text-base font-bold"
-  }, [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _c("span", {
+  }, [_vm._v(_vm._s(_vm.userProfile.name))]), _vm._v(" "), _c("span", {
     staticClass: "text-base"
-  }, [_vm._v(_vm._s(_vm.user.presentation))]), _vm._v(" "), _c("a", {
+  }, [_vm._v(_vm._s(_vm.userProfile.presentation))]), _vm._v(" "), _c("a", {
     staticClass: "block text-base text-blue-500 mt-2",
     attrs: {
-      href: _vm.user.web_site,
+      href: _vm.userProfile.web_site,
       target: "_blank"
     }
-  }, [_vm._v("\n                           " + _vm._s(_vm.user.web_site) + "\n                        ")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                           " + _vm._s(_vm.userProfile.web_site) + "\n                        ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "border-b border-gray-300"
   }), _vm._v(" "), _vm.posts.length > 0 ? _c("article", {
-    staticClass: "mt-5 grid grid-cols-3 gap-10"
+    staticClass: "mt-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10"
   }, _vm._l(_vm.posts, function (post, index) {
     return _c("image-post", {
       key: index,
       attrs: {
         post: post
+      },
+      on: {
+        show: _vm.changeStateModalPost
       }
     });
   }), 1) : _c("div", {
     staticClass: "w-full text-center text-3xl pt-10"
-  }, [_vm._v("No hay publicaciones")])])]);
+  }, [_vm._v("No hay publicaciones")]), _vm._v(" "), _c("modal-post", {
+    attrs: {
+      show: _vm.show,
+      post: _vm.post
+    },
+    on: {
+      show: _vm.changeState
+    }
+  })], 1)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -8602,7 +8642,7 @@ var render = function render() {
     on: {
       click: _vm.changeStateShowCreatePost
     }
-  }, [_vm._v("\n        Agregar publicación\n    ")]), _vm._v(" "), _vm.posts.length > 0 ? _c("div", _vm._l(_vm.posts, function (post, index) {
+  }, [_vm._v("\n            Agregar publicación\n    ")]), _vm._v(" "), _vm.posts.length > 0 ? _c("div", _vm._l(_vm.posts, function (post, index) {
     return _c("post-component", {
       key: index,
       attrs: {
