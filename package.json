@@ -27,6 +27,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@inertiajs/vue2": "^1.0.3",
         "moment-timezone": "^0.5.43"
     }
 }

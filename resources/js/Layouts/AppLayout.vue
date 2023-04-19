@@ -48,21 +48,21 @@
                                     </template>
 
                                     <template #content>
-                                        <div v-if="users.length > 0">
-                                            <inertia-link v-for="(user,index) in users" :href="'/profile/'+user.nick_name" :key="index" class="block flex items-center py-2 px-3 hover:bg-gray-100">
+                                        
+                                            <Link v-if="users.length > 0" v-for="(user,index) in users" href="'/profile/'+user.nick_name" :key="index" class="flex items-center py-2 px-3 hover:bg-gray-100">
                                                 <img class="rounded-full w-9 h-9 object-cover" :src="user.profile_photo_url" :alt="user.name">
                                                 <div class="ml-2">
                                                     <span class="block font-bold text-gray-700 text-sm">{{ user.nick_name }}</span>
                                                     <span class="text-sm font-light text-gray-400">{{ user.name }}</span>
                                                 </div>
-                                            </inertia-link>
+                                            </Link>
                                             <div v-if="search == ''" class="py-2 px-3 flex items-center">
                                                 <span class="text-sm font-light text-gray-400">Busca a tus amigos...</span>
                                             </div>
                                             <div v-if="!userexists" class="py-2 px-3 flex items-center">
                                                 <span class="text-sm font-light text-gray-400">No existe un usuario</span>
                                             </div>
-                                        </div>
+                                        
                                     </template>
 
                                 </dropdown>
@@ -128,29 +128,19 @@
                             <div class="ml-3 relative">
                                 <jet-dropdown align="right" width="48">
                                     <template #trigger>
-                                        <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
+                                        <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                                             <img class="h-8 w-8 rounded-full object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
                                         </button>
-
-                                        <span v-else class="inline-flex rounded-md">
-                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                                {{ $page.props.user.name }}
-
-                                                <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                                </svg>
-                                            </button>
-                                        </span>
                                     </template>
 
                                     <template #content>
                                         <!-- Account Management -->
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
-                                            Manage Account
-                                        </div>
+                                        <jet-dropdown-link :href="'/profile/' + $page.props.user.nick_name">
+                                            Perfil
+                                        </jet-dropdown-link>
 
                                         <jet-dropdown-link :href="route('profile.show')">
-                                            Profile
+                                            Configuración
                                         </jet-dropdown-link>
 
                                         <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
@@ -204,8 +194,12 @@
                         </div>
 
                         <div class="mt-3 space-y-1">
+                            <jet-responsive-nav-link  :href="'/profile/' + $page.props.user.nick_name" :active="route().current('profile.show')">
+                                Perfil
+                            </jet-responsive-nav-link>
+
                             <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
-                                Profile
+                                Configuración
                             </jet-responsive-nav-link>
 
                             <jet-responsive-nav-link :href="route('api-tokens.index')" :active="route().current('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
@@ -282,6 +276,7 @@
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
+    import { Link } from '@inertiajs/vue2'
 
     export default {
         components: {
@@ -291,7 +286,7 @@
             Dropdown,
             JetDropdownLink,
             JetNavLink,
-            JetResponsiveNavLink,
+            JetResponsiveNavLink
         },
 
         data() {

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Redirect;
@@ -34,5 +35,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/list-posts', [PostController::class, 'getPosts'])->name('list-post');
     Route::post('/like-post', [PostController::class, 'likeOrDislike'])->name('like-post');
     Route::post('/comment', [PostController::class, 'comment'])->name('comment');
+    
+    // Profile
+    Route::get('/profile/{nick_name}', [ProfileController::class, 'index'])->name('profile');
 
 });
