@@ -69,17 +69,22 @@ class Post extends Model
         ])->find($post->id);
     }
 
-    public static function getPosts($id)
+    public static function getPosts($id, $profile = null)
     {
-        return (new static)::with([
+        $query = (new static)::with([
             'user',
             'comments' => function($query) {
                 $query->with('user:id, name, nick_name, profile_photo_path');
             },
             'likes'
-        ])->where('user_id', $id)
-          ->orWhereIn('user_id', Follower::select('user_id')->where('follower_id', $id)->get())
-          ->orderBy('created_at', 'desc')
-          ->get();
+        ])->where('user_id', $id);
+
+        if( is_null($profile) ){
+            $query = $query->orWhereIn('user_id', Follower::select('user_id')->where('follower_id', $id)
+                                                                             ->get());
+            }
+
+        return $query->orderBy('created_at', 'desc')->get();
+
     }
 }

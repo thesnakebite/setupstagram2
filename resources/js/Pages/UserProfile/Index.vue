@@ -54,29 +54,20 @@
                     </div>
             </div>
             <div class="border-b border-gray-300"></div>
-            <article class="mt-5 grid grid-cols-3 gap-10">
-                <div class="cursor-pointer relative" style="width:300px; height:300px">
-                    <img src="https://images.pexels.com/photos/247431/pexels-photo-247431.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-                        class="foto w-full h-full object-cover"
-                        alt="description" />
-                </div>
-                <div class="cursor-pointer relative" style="width:300px; height:300px">
-                    <img src="https://images.pexels.com/photos/258109/pexels-photo-258109.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-                        class="foto w-full h-full object-cover"
-                        alt="description" />
-                </div>
-                <div class="cursor-pointer relative" style="width:300px; height:300px">
-                    <img src="https://images.pexels.com/photos/248771/pexels-photo-248771.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-                        class="foto w-full h-full object-cover"
-                        alt="description" />
-                </div>
+            <article v-if="posts.length > 0" class="mt-5 grid grid-cols-3 gap-10">
+
+                <!-- Listado de posts -->
+                <image-post v-for="(post, index) in posts" :key="index" :post="post"></image-post>
+                
             </article>
+            <div v-else class="w-full text-center text-3xl pt-10">No hay publicaciones</div>
         </div>
     </app-layout>
 </template>
 
 <script>
     import AppLayout from '@/Layouts/AppLayout'
+    import ImagePost from '@/Pages/UserProfile/ImagePost'
 
     export default {
 
@@ -84,12 +75,14 @@
             'user',
             'followers',
             'followed',
-            'postsCount'
+            'postsCount',
+            'posts',
         ],
 
         components: {
             AppLayout,
-        
+            ImagePost,
         }
     }
+
 </script>
