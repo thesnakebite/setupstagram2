@@ -24,7 +24,7 @@ class Post extends Model
     public function getCountCommentsAttribute()
     {
         return $this->comments->count();
-;    }
+    }
 
     public function getCountLikesAttribute()
     {
@@ -73,18 +73,19 @@ class Post extends Model
     {
         $query = (new static)::with([
             'user',
-            'comments' => function($query) {
+            'comments' => function($query){
                 $query->with('user:id, name, nick_name, profile_photo_path');
             },
             'likes'
-        ])->where('user_id', $id);
+        ])
+        ->where('user_id',$id);
 
-        if( is_null($profile) ){
-            $query = $query->orWhereIn('user_id', Follower::select('user_id')->where('follower_id', $id)
-                                                                             ->get());
-            }
+        if(is_null($profile)){
+            $query = $query->orWhereIn('user_id', Follower::select('user_id')->where('follower_id',$id)->get());
+        }
 
-        return $query->orderBy('created_at', 'desc')->get();
+        return $query->orderBy('created_at', 'desc')
+            ->get();
 
     }
 }

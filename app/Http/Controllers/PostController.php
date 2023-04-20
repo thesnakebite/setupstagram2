@@ -41,7 +41,7 @@ class PostController extends Controller
 
     public function getPosts()
     {
-        return $this->post->getPosts(Auth::id());
+        return $this->post->getPosts( Auth::id() );
     }
 
     public function likeOrDislike(Request $request)
@@ -78,7 +78,7 @@ class PostController extends Controller
            $comment = $this->comments->create( $request->all() );
 
            return $this->comments
-            ->with('user:id, name, nick_name, profile_photo_path')
+            ->with('user:id, name, nick_name, profile_photo_url')
             ->where('id', $comment->id )->first();
 
         } catch (\Exception $e) {

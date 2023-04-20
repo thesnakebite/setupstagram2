@@ -42,5 +42,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Chat
     Route::get('/chats', [ChatController::class, 'index'])->name('chats');
-    Route::get('/user/chat/{nick_name}', [SearchController::class, 'usersIFollow'])->name('usersIFollow');
+    Route::get('/user/chat/{nick_name}', [SearchController::class, 'usersIFollow'])
+        ->name('usersIFollow');
 });

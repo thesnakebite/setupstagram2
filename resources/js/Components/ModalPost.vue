@@ -12,14 +12,11 @@
 
                 <div class="col-span-1 relative pl-4">
                     <header class="border-b border-grey-400">
-                        <a href="#" class="cursor-pointer py-4 flex items-center text-sm outline-none focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                            <img class="h-8 w-8 rounded-full object-cover"
-                                 :src="post.user.profile_photo_url"
-                                 :alt="post.user.nick_name" />
-                            <p class="block ml-2 font-bold">
-                                {{ post.user.nick_name }}
-                            </p>
-                        </a>
+                        <inertia-link :href="'/profile/'+post.user.nick_name" class="block cursor-pointer py-4 flex items-center text-sm outline-none focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
+                            <img :src="post.user.profile_photo_url"
+                            :alt="post.user.nick_name" class="h-8 w-8 rounded-full object-cover"/>
+                            <p class="block ml-2 font-bold">{{ post.user.nick_name }}</p>
+                        </inertia-link>
                     </header>
 
                     <div class="scroll" ref="scrollComments">
@@ -29,16 +26,9 @@
                                       :urlImage="post.user.profile_photo_url">
                             </comments>
                         </div>
-                    
-                       
-                            <comments v-if="post.comments.length > 0" v-for="(comment, index) in post.comments" :key="index" 
-                                :comment="comment.comment" 
-                                :nickName="comment.user.nick_name" 
-                                :urlImage="comment.user.profile_photo_url">
-                            </comments>
-            
-                        
-                        <div v-else class="w-100 text-center text-grey-500">No hay comentarios</div>
+
+                            <comments v-if="post.comments.length > 0" v-for="(comment, index) in post.comments" :key="index" :comment="comment.comment" :nickName="comment.user.nick_name" :urlImage="comment.user.profile_photo_url"></comments>
+                            <div v-else class="w-100 text-center text-grey-500">No hay comentarios</div>
                     </div>
 
                     <div class="absolute bottom-0 left-0 right-0 pl-4">
@@ -93,29 +83,27 @@
 </template>
 
 <script>
+
     import Comments from '@/Components/Comments'
     import Modal from '@/Jetstream/Modal'
-    import Input from '../Jetstream/Input.vue'
     import moment from 'moment'
 
-
     export default {
-  
-        data() {
+        data(){
             return {
-                text: ''
+                text: '',
+                nick_name: ''
             }
         },
 
-        props: [
-            'post', 
+        props:[
+            'post',
             'show'
         ],
 
-        components: { 
+        components:{
             Comments,
-            Modal,
-            Input,
+            Modal
         },
 
         methods: {
@@ -128,31 +116,29 @@
             },
 
             async likeDislike(){
-                await axios.post('/like-post',{
-                post_id: this.post.id
-            }).then(response => {
-                this.post.likes = response.data.likes
-
-                    if(response.data.like){
-                        this.post.countLikes++
-                    }else{
-                        --this.post.countLikes
-                    }
-                })
+                await axios.post('/like-post',{post_id: this.post.id})
+                    .then(response => {
+                        this.post.likes = response.data.likes
+                        if(response.data.like){
+                            this.post.countLikes++
+                        }else{
+                            --this.post.countLikes
+                        }
+                    })
             },
 
             async comment(userId){
                 await axios.post('/comment',{post_id:this.post.id,user_id:userId,comment:this.text})
-                .then(response => {
-                    this.post.comments.push(response.data)
-                    this.post.countComments++
-                    this.text = ''
-                    this.scrollToBottom()
-                })
+                    .then(response => {
+                        this.post.comments.push(response.data)
+                        this.post.countComments++
+                        this.text = ''
+                        this.scrollToBottom()
+                    })
             },
 
             scrollToBottom(){
-                setTimeout( () => {
+                setTimeout(()=>{
                     this.$refs.scrollComments.scrollTop = this.$refs.scrollComments.scrollHeight - this.$refs.scrollComments.clientHeight
                 },50)
             }

@@ -6,12 +6,12 @@
 
 <script>
     import AppLayout from '@/Layouts/AppLayout'
-    import Welcome from './Welcome.vue'
+    import Welcome from './Welcome'
 
     export default {
         components: {
             AppLayout,
             Welcome,
-        }
+        },
     }
 </script>

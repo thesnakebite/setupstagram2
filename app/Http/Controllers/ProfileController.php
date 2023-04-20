@@ -22,16 +22,12 @@ class ProfileController extends Controller
     public function index($nick_name)
     {
         $user = $this->user->where('nick_name', $nick_name)->first();
-
-        $followers = $user->followers()->count();
-        $followed = $this->followers->where('follower_id', $user->id)->count();
+        
         $postsCount = $user->posts()->count();
         $posts = Post::getPosts($user->id, true);
 
         return Inertia::render('UserProfile/Index', [
             'userProfile' => $user,
-            'followers' => $followers,
-            'followed' => $followed,
             'postsCount' => $postsCount,
             'posts' => $posts
         ]);

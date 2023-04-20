@@ -32,9 +32,16 @@
 
                     <ul class="overflow-auto" style="height: 500px;">
                         <h2 class="ml-2 mb-2 text-gray-600 text-lg my-2">Chats</h2>
-                        <li>
-                            <user-chats></user-chats>
+                        <li v-if="chats.length > 0" v-for=" (chat, index) in chats" :key="index">
+                            <user-chats :username="chat.userrecive.id === $page.props.user.id ? chat.usersent.nick_name : chat.userrecive.nick_name" 
+                                        :image="chat.userrecive.id === $page.props.user.id ? chat.usersent.profile_photo_url : chat.userrecive.profile_photo_url"  
+                                        :message="chat.messages">
+                            </user-chats>
                         </li>
+
+                        <div v-else class="ml-2 mb-2 text-gray-600 text-sm my-2">
+                            No se encontraron chats
+                        </div>
                     </ul>
                 </div>
                 <div class="col-span-2 bg-white">
@@ -60,6 +67,8 @@
                 userchats: [],
             }
         },
+
+        props: ['chats'],
 
         components: {
             AppLayout,
