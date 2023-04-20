@@ -98,6 +98,16 @@
                         onFinish: () => this.form.reset('password'),
                     })
             }
+        },
+
+        mounted(){
+            var pusher = new Pusher('d3d6601b3eddd127fb52', {
+                cluster: 'eu'
+            });
+            
+            var channel = pusher.subscribe('setupstagram-channel');
+
+            
         }
     }
 </script>

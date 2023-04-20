@@ -6,7 +6,9 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\OnlineController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\OfflineController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -47,4 +49,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/user-chat/{id}', [ChatController::class, 'getChat'])->name('get-chat');
     Route::get('/new-chat/{id}', [ChatController::class, 'getNewChat'])->name('get-new-chat');
+
+    // Offline and Online
+    Route::post('/online/{id}', OnlineController::class)->name('online');
+    Route::post('/offline/{id}', OfflineController::class)->name('offline');
 });

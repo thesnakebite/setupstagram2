@@ -310,6 +310,8 @@
             },
 
             logout() {
+                axios.post('/offline/' + this.$page.props.user.id, {})
+
                 this.$inertia.post(route('logout'));
             },
 
@@ -328,6 +330,18 @@
                 }else{
                     this.users = []
                 }
+            },
+
+            listen(){
+                window.Echo.join('setupstagram-channel').joining((user) => {
+                    if(user.status === 0){
+                        axios.post('/online/' + user.id, {})
+                    }
+                })
+            },
+
+            mounted(){
+                this.listen()
             },
         }
     }

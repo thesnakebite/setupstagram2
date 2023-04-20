@@ -7,7 +7,7 @@
             <span class="block ml-2 font-bold text-base text-gray-600">
                 {{ userprop.nick_name }}
             </span>
-            <span class="connected text-green-500 ml-2" >
+            <span v-if="user.status === 1" class="connected text-green-500 ml-2" >
                 <svg width="6" height="6">
                     <circle cx="3" cy="3" r="3" fill="currentColor"></circle>
                 </svg>
@@ -62,6 +62,12 @@
     import moment from 'moment';
 
     export default {
+        data(){
+            return{
+                user: this.userprop
+            }
+        },
+
         props: [
             'userprop',
             'messages',
@@ -73,6 +79,27 @@
             getHoursByDate(date){
                 return moment(date).format('h:m A')
             }
+        },
+
+        mounted(){
+            const component = this
+            var pusher = new Pusher('d3d6601b3eddd127fb52', {
+                cluster: 'eu'
+            });
+            
+            var channel = pusher.subscribe('setupstagram-channel');
+
+            channel.bind('offline', function(data) {
+                if(component.user.id === data.user.id){
+                    component.user = data.user
+                }
+            });
+
+            channel.bind('online', function(data) {
+                if(component.user.id === data.user.id){
+                    component.user = data.user
+                }
+            });
         }
     }
 
