@@ -317,8 +317,8 @@
             },
 
             async userSearch(){
-                if(this.search != ''){
-                    await axios.get('/search/'+this.search)
+                if(this.search !=''){
+                    await axios.get('/search/' + this.search)
                     .then(response => {
                         if(response.data.length > 0 && Array.isArray(response.data)){
                             this.userexists = true
