@@ -19,10 +19,12 @@
 
                     <ul v-if="search != ''" class="overflow-auto" style="height: 400px;">
                         <h2 class="ml-2 mb-2 text-gray-600 text-lg my-2">Amigos</h2>
-                        <li v-if="userchats.length > 0" v-for="(user, index) in userchats" :key="index">
+                        <li v-if="userschats.length > 0" v-for="(user, index) in userschats" :key="index">
                             <user-chats :username="user.nick_name" 
-                                        :image="user.profile_photo_url" 
-                                        :message="[]">
+                                        :image="user.profile_photo_url"
+                                        :message="[]"
+                                        :userid="user.id" 
+                                        @getNewChat="getNewChat">
                             </user-chats>
                         </li>
                         <div v-else class="ml-2 mb-2 text-gray-600 text-sm my-2">
@@ -34,8 +36,10 @@
                         <h2 class="ml-2 mb-2 text-gray-600 text-lg my-2">Chats</h2>
                         <li v-if="chats.length > 0" v-for=" (chat, index) in chats" :key="index">
                             <user-chats :username="chat.userrecive.id === $page.props.user.id ? chat.usersent.nick_name : chat.userrecive.nick_name" 
-                                        :image="chat.userrecive.id === $page.props.user.id ? chat.usersent.profile_photo_url : chat.userrecive.profile_photo_url"  
-                                        :message="chat.messages">
+                                        :image="chat.userrecive.id === $page.props.user.id ? chat.usersent.profile_photo_url : chat.userrecive.profile_photo_url"
+                                        :message="chat.messages"
+                                        :chatid="chat.id" 
+                                        @getChat="getChat">
                             </user-chats>
                         </li>
 
@@ -45,7 +49,21 @@
                     </ul>
                 </div>
                 <div class="col-span-2 bg-white">
-                    <chat></chat>
+                    <div v-if="userchat.length <= 0" 
+                         class="w-full flex justify-center items-center" 
+                         style="height: 75vh;">
+                         
+                         <div class="text-center">
+                            <h5 class="text-gray-600 text-lg mb-2">Tus mensajes</h5>
+                            <span class="block text-sm text-gray-600">Envía fotos y mensajes a tus amigos</span>
+                        </div>
+                    </div>
+                    <chat v-else
+                          :userprops="userchat.userrecive.id === $page.props.user.id ? userchat.usersent : userchat.userrecive" 
+                          :messages="userchat.message"
+                          :usercurrent="$page.props.user.id"
+                          :chatid="userchat.id">
+                    </chat>
                 </div>
             </div>
         </div>
@@ -64,7 +82,8 @@
         data() {
             return {
                 search: '',
-                userchats: [],
+                userschats: [],
+                userchat: [],
             }
         },
 
@@ -78,16 +97,32 @@
 
         methods: {
             async searchFriends(){
-                if(this.search !=''){
+                if(this.search != ''){
                     await axios('/user/chat/' + this.search)
                     .then(response => {
-                        this.userchats = response.data
+                        this.userschats = response.data
                     })
                 } else{
-                    this.userchats = []
+                    this.userschats = []
                 }
-            }
+            },
+
+            async getChat(id){
+                await axios('/user-chat/' + id)
+                    .then(response => {
+                        this.userchat = response.data
+                    })
+                },
+
+            async getChat(id){
+                await axios('/new-chat/' + id)
+                    .then(response => {
+                        this.userchat = response.data
+                    })
+                },
+            },
+    
         }
-    }
+    
 
 </script>

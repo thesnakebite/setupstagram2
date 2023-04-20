@@ -1,5 +1,5 @@
 <template>
-    <a class="hover:bg-gray-100 border-b border-gray-300 px-3 py-2 cursor-pointer flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
+    <a @click="emitEvent" class="hover:bg-gray-100 border-b border-gray-300 px-3 py-2 cursor-pointer flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
         <img class="h-10 w-10 rounded-full object-cover"
              :src="image"
              :alt="username" />
@@ -24,16 +24,41 @@
             }
         },
 
-        props: [
-            'username',
-            'image',
-            'message',
-        ],
+        props: {
+            username:{
+                type: String,
+                required: true
+            },
+            image:{
+                type: String,
+                required: true
+            },
+            message:{
+                type: Array,
+                required: true
+            },
+            chatid: {
+                type: Number,
+                required: false
+            },
+            userid: {
+                type: Number,
+                required: false
+            }
+        },
 
         methods: {
             getDifferenceTime(date){
                 return moment(date).toNow(true)
             },
+
+            emitEvent() {
+                if(this.chatid) {
+                    this.$emit('getChat', this.chatid)
+                }else {
+                    this.$emit('getNewChat', this.userid)
+                }
+            }
         }
     }
 </script>

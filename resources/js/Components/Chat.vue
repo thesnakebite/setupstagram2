@@ -2,9 +2,11 @@
     <div class="w-full">
         <div class="flex items-center border-b border-gray-300 pl-3 py-3">
             <img class="h-10 w-10 rounded-full object-cover"
-                    src="https://images.pexels.com/photos/3777931/pexels-photo-3777931.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-                    alt="username" />
-            <span class="block ml-2 font-bold text-base text-gray-600">Eduard</span>
+                    :src="userprop.profile_photo_url"
+                    :alt="userprop.nick_name" />
+            <span class="block ml-2 font-bold text-base text-gray-600">
+                {{ userprop.nick_name }}
+            </span>
             <span class="connected text-green-500 ml-2" >
                 <svg width="6" height="6">
                     <circle cx="3" cy="3" r="3" fill="currentColor"></circle>
@@ -13,32 +15,21 @@
         </div>
         <div id="chat" class="w-full overflow-y-auto p-10 relative" style="height: 700px;" ref="toolbarChat">
             <ul>
-                <li class="clearfix2">
-                    <div class="w-full flex justify-start">
+                <li v-if="messages.length > 0" v-for="(message, index) in messages" 
+                    @keyup="index" class="clearfix2">
+                    <div class="w-full flex" 
+                         :class="[message.user_id === usercurrent ? 'justify-end' : 'justify-start']">
                         <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
-                            <span class="block">Hello bro</span>
-                            <span class="block text-xs text-right">10:30pm</span>
-                        </div>
-                    </div>
-                    <div class="w-full flex justify-end" >
-                        <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
-                            <span class="block">Hello</span>
-                            <span class="block text-xs text-left">10:32pm</span>
-                        </div>
-                    </div>
-                    <div class="w-full flex justify-end" >
-                        <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
-                            <span class="block">how are you?</span>
-                            <span class="block text-xs text-left">10:32pm</span>
-                        </div>
-                    </div>
-                    <div class="w-full flex justify-start">
-                        <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
-                            <span class="block">I am fine</span>
-                            <span class="block text-xs text-right">10:42pm</span>
+                            <span class="block">
+                                {{ message.message }}
+                            </span>
+                            <span class="block text-xs text-right">{{ getHoursByDate(message.created_at) }}</span>
                         </div>
                     </div>
                 </li>
+                <div v-else class="w-full px-5 py-2 my-2 text-center text-3xl">
+                    No existe conversación
+                </div>
             </ul>
         </div>
 
@@ -68,7 +59,21 @@
 
 <script>
 
-    export default {
+    import moment from 'moment';
 
+    export default {
+        props: [
+            'userprop',
+            'messages',
+            'usercurrent',
+            'chatid'
+        ],
+
+        methods: {
+            getHoursByDate(date){
+                return moment(date).format('h:m A')
+            }
+        }
     }
+
 </script>

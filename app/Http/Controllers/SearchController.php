@@ -24,4 +24,5 @@ class SearchController extends Controller
                 ->where('nick_name', 'like','%' . $nick_name . '%')
                 ->get();
     }
+
 }
