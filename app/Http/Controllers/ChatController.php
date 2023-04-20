@@ -10,12 +10,12 @@ use Inertia\Inertia;
 class ChatController extends Controller
 {
     private $chat;
-    private $message;
+    private $messages;
 
     public function __construct(Chat $chat, Message $message)
     {
         $this->chat = $chat;
-        $this->message = $message;
+        $this->messages = $message;
     }
 
     public function index()

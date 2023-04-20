@@ -2137,7 +2137,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['comment', 'nickName', 'urlImage']
+  props: ['comment', 'nickname', 'urlImage']
 });
 
 /***/ }),
@@ -4652,10 +4652,8 @@ var render = function render() {
     }
   }, [_c("ul", _vm._l(_vm.messages, function (message, index) {
     return _vm.messages.length > 0 ? _c("li", {
-      staticClass: "clearfix2",
-      on: {
-        keyup: index
-      }
+      key: index,
+      staticClass: "clearfix2"
     }, [_c("div", {
       staticClass: "w-full flex",
       "class": [message.user_id === _vm.usercurrent ? "justify-end" : "justify-start"]
@@ -4772,7 +4770,7 @@ var render = function render() {
     staticClass: "font-bold ml-2"
   }, [_c("a", {
     staticClass: "cursor-pointer"
-  }, [_vm._v(_vm._s(_vm.nickName) + ":")]), _vm._v(" "), _c("span", {
+  }, [_vm._v(_vm._s(_vm.nickName))]), _vm._v(" "), _c("span", {
     staticClass: "text-gray-700 font-medium ml-1"
   }, [_vm._v("\n            " + _vm._s(_vm.comment) + "\n        ")])])]);
 };

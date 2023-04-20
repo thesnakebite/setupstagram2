@@ -77,8 +77,7 @@ class PostController extends Controller
         try {
            $comment = $this->comments->create( $request->all() );
 
-           return $this->comments
-            ->with('user:id, name, nick_name, profile_photo_url')
+           return $this->comments->with('user:id, name, nick_name, profile_photo_path')
             ->where('id', $comment->id )->first();
 
         } catch (\Exception $e) {

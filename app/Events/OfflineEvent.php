@@ -35,7 +35,7 @@ class OfflineEvent
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('setupstagram.channel');
+        return new Channel('setupstagram.channel');
     }
 
     public function broadcastAs()

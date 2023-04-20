@@ -6,7 +6,7 @@
             :alt="nickName" />
         </a>
         <p class="font-bold ml-2">
-            <a class="cursor-pointer">{{ nickName }}:</a>
+            <a class="cursor-pointer">{{ nickName }}</a>
             <span class="text-gray-700 font-medium ml-1">
                 {{ comment }}
             </span>
@@ -16,6 +16,10 @@
 
 <script>
     export default {
-        props:['comment','nickName','urlImage']
+        props:[
+            'comment',
+            'nickname',
+            'urlImage',
+        ]
     }
 </script>
