@@ -22,7 +22,7 @@
                     </ul>
                 </div>
                 <div class="col-span-2 bg-white">
-                    
+                    <chat></chat>
                 </div>
             </div>
         </div>
@@ -33,12 +33,14 @@
 <script>
     import AppLayout from '@/Layouts/AppLayout'
     import UserChats from '@/Components/UserChats'
+    import Chat from '@/Components/Chat'
 
 
     export default{
         components: {
             AppLayout,
-            UserChats
+            UserChats,
+            Chat,
         }
     }
 

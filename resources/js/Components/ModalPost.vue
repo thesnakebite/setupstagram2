@@ -12,15 +12,14 @@
 
                 <div class="col-span-1 relative pl-4">
                     <header class="border-b border-grey-400">
-                        <inertia-link :href="'/profile/' + post.user.nick_name"
-                           class="cursor-pointer py-4 flex items-center text-sm outline-none focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
+                        <a href="#" class="cursor-pointer py-4 flex items-center text-sm outline-none focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                             <img class="h-8 w-8 rounded-full object-cover"
                                  :src="post.user.profile_photo_url"
                                  :alt="post.user.nick_name" />
                             <p class="block ml-2 font-bold">
                                 {{ post.user.nick_name }}
                             </p>
-                        </inertia-link>
+                        </a>
                     </header>
 
                     <div class="scroll" ref="scrollComments">
@@ -98,7 +97,6 @@
     import Modal from '@/Jetstream/Modal'
     import Input from '../Jetstream/Input.vue'
     import moment from 'moment'
-    import { Link } from '@inertiajs/vue2'
 
 
     export default {
@@ -117,7 +115,7 @@
         components: { 
             Comments,
             Modal,
-            Input
+            Input,
         },
 
         methods: {
