@@ -5124,7 +5124,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("a", {
     staticClass: "text-gray-400 text-sm cursor-pointer font-semibold"
-  }, [_vm._v("\n                " + _vm._s(_vm.post.countComments) + " comments\n            ")])], 1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                " + _vm._s(_vm.post.countComments) + " comentarios\n            ")])], 1)]), _vm._v(" "), _c("div", {
     staticClass: "px-6 pt-4 pb-3"
   }, [_c("div", {
     staticClass: "flex items-start"
@@ -6614,7 +6614,7 @@ var render = function render() {
       fn: function fn() {
         return [_c("jet-dropdown-link", {
           attrs: {
-            href: "/profile/" + _vm.$page.props.user
+            href: "/profile/" + _vm.$page.props.user.nick_name
           }
         }, [_vm._v("\n                                        Perfil\n                                    ")]), _vm._v(" "), _c("jet-dropdown-link", {
           attrs: {
@@ -6637,7 +6637,7 @@ var render = function render() {
           attrs: {
             as: "button"
           }
-        }, [_vm._v("\n                                            Logout\n                                        ")])], 1)];
+        }, [_vm._v("\n                                            Cerrar sesión\n                                        ")])], 1)];
       },
       proxy: true
     }])
@@ -7332,7 +7332,7 @@ var render = function render() {
         }, [_c("div", {
           staticClass: "flex justify-center my-4"
         }, [_c("span", {
-          staticClass: "mr-4 text-sm text-gray-600"
+          staticClass: "mr-2 text-sm text-gray-600"
         }, [_vm._v("No tienes cuenta")]), _vm._v(" "), _c("inertia-link", {
           staticClass: "font-bold text-sm text-gray-600 hover:text-indigo-800",
           attrs: {
@@ -7412,15 +7412,15 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("span", {
     staticClass: "ml-2 text-sm text-gray-600"
-  }, [_vm._v("Remember me")])], 1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Acuérdate de mí")])], 1)]), _vm._v(" "), _c("div", {
     staticClass: "flex items-center justify-end mt-4"
   }, [_vm.canResetPassword ? _c("inertia-link", {
     staticClass: "underline text-sm text-gray-600 hover:text-gray-900",
     attrs: {
       href: _vm.route("password.request")
     }
-  }, [_vm._v("\n                Forgot your password?\n            ")]) : _vm._e(), _vm._v(" "), _c("jet-button", {
-    staticClass: "ml-4",
+  }, [_vm._v("\n                ¿Olvidaste tu contraseña?\n            ")]) : _vm._e(), _vm._v(" "), _c("jet-button", {
+    staticClass: "ml-4 hover:bg-indigo-800",
     "class": {
       "opacity-25": _vm.form.processing
     },
@@ -7470,7 +7470,7 @@ var render = function render() {
   }, [_c("div", [_c("jet-label", {
     attrs: {
       "for": "name",
-      value: "Name"
+      value: "Nombre"
     }
   }), _vm._v(" "), _c("jet-input", {
     staticClass: "mt-1 block w-full",
@@ -7557,7 +7557,7 @@ var render = function render() {
   }, [_c("jet-label", {
     attrs: {
       "for": "password_confirmation",
-      value: "Confirm Password"
+      value: "Confirmar Password"
     }
   }), _vm._v(" "), _c("jet-input", {
     staticClass: "mt-1 block w-full",
@@ -7615,15 +7615,15 @@ var render = function render() {
     attrs: {
       href: _vm.route("login")
     }
-  }, [_vm._v("\n                Already registered?\n            ")]), _vm._v(" "), _c("jet-button", {
-    staticClass: "ml-4",
+  }, [_vm._v("\n                ¿Ya registrado?\n            ")]), _vm._v(" "), _c("jet-button", {
+    staticClass: "ml-4 hover:bg-indigo-800",
     "class": {
       "opacity-25": _vm.form.processing
     },
     attrs: {
       disabled: _vm.form.processing
     }
-  }, [_vm._v("\n                Register\n            ")])], 1)])], 1);
+  }, [_vm._v("\n                Registrate\n            ")])], 1)])], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -9388,8 +9388,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "",
-  cluster: "mt1",
+  key: "d3d6601b3eddd127fb52",
+  cluster: "eu",
   forceTLS: true
 });
 

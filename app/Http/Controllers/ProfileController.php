@@ -19,14 +19,14 @@ class ProfileController extends Controller
     }
 
     public function index($nick_name){
-        $user = $this->user->where('nick_name',$nick_name)->first();
+        $user = $this->user->where('nick_name', $nick_name)->first();
 
         // $followers = $user->followers()->count();
         // $followed = $this->followers->where('follower_id',$user->id)->count();
         $postsCount = $user->posts()->count();
         $posts = Post::getPost($user->id,true);
 
-        return Inertia::render('UserProfile/index',[
+        return Inertia::render('UserProfile/Index',[
             'userProfile' => $user,
             // 'followers' => $followers,
             // 'followed' => $followed,
@@ -44,14 +44,17 @@ class ProfileController extends Controller
     }
 
     public function unFollow(Request $request){
-        $follow = $this->followers->where('user_id',$request->user_id)->where('follower_id',auth()->user()->id)->first();
+        $follow = $this->followers->where('user_id', $request->user_id)
+            ->where('follower_id', auth()->user()->id)
+            ->first();
 
         return $follow->delete();
     }
 
     public function existsFollow($user_id){
-        return $this->followers->where('user_id',$user_id)->where('follower_id',auth()->user()->id)->exists()
-        ? ['exists' => true] : ['exists' => false];
+        return $this->followers->where('user_id', $user_id)
+            ->where('follower_id', auth()->user()->id)
+            ->exists() ? ['exists' => true] : ['exists' => false];
     }
 
     public function markAsRead(){

@@ -24,16 +24,16 @@
             <div class="block mt-4">
                 <label class="flex items-center">
                     <jet-checkbox name="remember" v-model="form.remember" />
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                    <span class="ml-2 text-sm text-gray-600">Acuérdate de mí</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 <inertia-link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Forgot your password?
+                    ¿Olvidaste tu contraseña?
                 </inertia-link>
 
-                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <jet-button class="ml-4 hover:bg-indigo-800" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Login
                 </jet-button>
             </div>
@@ -42,7 +42,7 @@
         <template #register>
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <div class="flex justify-center my-4">
-                    <span class="mr-4 text-sm text-gray-600">No tienes cuenta</span>
+                    <span class="mr-2 text-sm text-gray-600">No tienes cuenta</span>
                     <inertia-link  :href="route('register')" class="font-bold text-sm text-gray-600 hover:text-indigo-800">
                     Registrate
                 </inertia-link>

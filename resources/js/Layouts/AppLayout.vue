@@ -142,7 +142,7 @@
 
                                     <template #content>
                                         <!-- Account Management -->
-                                        <jet-dropdown-link :href="'/profile/'+$page.props.user">
+                                        <jet-dropdown-link :href="'/profile/' + $page.props.user.nick_name">
                                             Perfil
                                         </jet-dropdown-link>
 
@@ -159,7 +159,7 @@
                                         <!-- Authentication -->
                                         <form @submit.prevent="logout">
                                             <jet-dropdown-link as="button">
-                                                Logout
+                                                Cerrar sesión
                                             </jet-dropdown-link>
                                         </form>
                                     </template>

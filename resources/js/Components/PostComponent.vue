@@ -57,7 +57,7 @@
                           :urlImage="post.user.profile_photo_url">
                 </comments>
                 <a class="text-gray-400 text-sm cursor-pointer font-semibold">
-                    {{ post.countComments }} comments
+                    {{ post.countComments }} comentarios
                 </a>
             </div>
 
