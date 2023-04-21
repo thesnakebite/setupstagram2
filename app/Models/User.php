@@ -63,11 +63,17 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
 
-    public function followers(){
+    public function followers()
+    {
         return $this->hasMany(Follower::class);
+    }
+
+    public function receivesBroadcastNotificationsOn(){
+        return 'App.Models.User.'.$this->id;
     }
 }

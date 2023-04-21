@@ -39,9 +39,8 @@ class PostController extends Controller
         }
     }
 
-    public function getPosts()
-    {
-        return $this->post->getPosts( Auth::id() );
+    public function getPosts(){
+        return $this->post->getPost(Auth::id());
     }
 
     public function likeOrDislike(Request $request)
@@ -72,16 +71,15 @@ class PostController extends Controller
         }
     }
 
-    public function comment(Request $request)
-    {
+    public function comment(Request $request){
         try {
-           $comment = $this->comments->create( $request->all() );
+            
+            $comment = $this->comments->create( $request->all() );
 
-           return $this->comments->with('user:id, name, nick_name, profile_photo_path')
-            ->where('id', $comment->id )->first();
-
+            return $this->comments->with('user:id,name,nick_name,profile_photo_path')
+                ->where('id',$comment->id)->first();
         } catch (\Exception $e) {
-            return response()->json($e->getMessage(), 500);
+            return response()->json($e->getMessage(),500);
         }
     }
     

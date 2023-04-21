@@ -94,43 +94,45 @@ export default {
         }
     },
 
-    props:['post'],
+    props:[
+        'post',
+    ],
 
     components:{
         Comments
     },
     
     methods: {
+
         getDifferenceTime(date){
             return moment(date).toNow(true)
         },
 
         setPost(){
-            this.$emit('post', this.post)
+            this.$emit('post',this.post)
         },
 
         async likeDislike(){
-            await axios.post('/like-post',{
-                post_id: this.post.id
-            }).then(response => {
-                this.post.likes = response.data.likes
-
+            await axios.post('/like-post',{post_id: this.post.id})
+                .then(response => {
+                    this.post.likes = response.data.likes
                     if(response.data.like){
                         this.post.countLikes++
                     }else{
                         --this.post.countLikes
                     }
                 })
-            },
+        },
 
         async comment(userId){
-            await axios.post('/comment',{post_id:this.post.id,user_id:userId,comment:this.textComment})
-                .then(response => {
-                    this.post.comments.push(response.data)
-                    this.post.countComments++
-                    this.textComment = ''
-                })
-            },
-        },
+            await axios.post('/comment',{
+                post_id:this.post.id,user_id:userId,comment:this.textComment
+            }).then(response => {
+                this.post.comments.push(response.data)
+                this.post.countComments++
+                this.textComment = ''
+            })
+        }
+    },
 }
 </script>

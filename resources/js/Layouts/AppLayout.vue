@@ -48,7 +48,9 @@
                                     </template>
 
                                     <template #content>
-                                        <inertia-link v-for="(user,index) in users" :href="'/profile/'+user.nick_name" :key="index" class="flex items-center py-2 px-3 hover:bg-gray-100">
+                                        <inertia-link v-for="(user, index) in users" :key="index" 
+                                            :href="'/profile/'+user.nick_name" 
+                                            class="flex items-center py-2 px-3 hover:bg-gray-100">
                                             <img class="rounded-full w-9 h-9 object-cover" :src="user.profile_photo_url" :alt="user.name">
                                             <div class="ml-2">
                                                 <span class="block font-bold text-gray-700 text-sm">{{ user.nick_name }}</span>
@@ -140,8 +142,7 @@
 
                                     <template #content>
                                         <!-- Account Management -->
-                                        <jet-dropdown-link :href="'/profile/'+$page.props.user.nick_name">
-
+                                        <jet-dropdown-link :href="'/profile/'+$page.props.user">
                                             Perfil
                                         </jet-dropdown-link>
 

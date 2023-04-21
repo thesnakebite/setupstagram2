@@ -76,53 +76,44 @@
     import UserChats from '@/Components/UserChats'
     import Chat from '@/Components/Chat'
 
-
-    export default{
-
-        data() {
+    export default {
+        data(){
             return {
                 search: '',
-                userschats: [],
-                userchat: [],
+                userschats:[],
+                userchat:[]
             }
         },
-
-        props: ['chats'],
-
-        components: {
+        
+        props:['chats'],
+        components:{
             AppLayout,
             UserChats,
-            Chat,
+            Chat
         },
-
         methods: {
             async searchFriends(){
                 if(this.search != ''){
-                    await axios('/user/chat/' + this.search)
+                    await axios('/user/chat/'+this.search)
                     .then(response => {
                         this.userschats = response.data
                     })
-                } else{
+                }else{
                     this.userschats = []
                 }
             },
-
             async getChat(id){
-                await axios('/user-chat/' + id)
+                await axios('/user-chat/'+id)
                     .then(response => {
                         this.userchat = response.data
                     })
-                },
-
-            async getChat(id){
-                await axios('/new-chat/' + id)
-                    .then(response => {
-                        this.userchat = response.data
-                    })
-                },
             },
-    
-        }
-    
-
+            async getNewChat(id){
+                await axios('/new-chat/'+id)
+                    .then(response => {
+                        this.userchat = response.data
+                    })
+            }
+        },
+    }
 </script>

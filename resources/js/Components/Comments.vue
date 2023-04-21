@@ -18,7 +18,7 @@
     export default {
         props:[
             'comment',
-            'nickname',
+            'nickName',
             'urlImage',
         ]
     }
