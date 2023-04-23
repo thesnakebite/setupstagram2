@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
-use App\Models\Message;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Message;
+use App\Events\NewMessage;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ChatController extends Controller
 {
@@ -53,5 +56,43 @@ class ChatController extends Controller
         ]);
 
         return $this->getChat($chat->id);
+    }
+    
+    public function sendMessage(Request $request)
+    {
+        $message = $this->messages->createMessage($request);
+
+        event(new NewMessage($message));
+    }
+
+    public function sendFile(Request $request)
+    {
+        $rules = $request->has('image')
+        ? 
+        ['image' => 'required|max:5000|mimes:jpeg,jpg,png']
+        : 
+        ['file' => 'required|max:5000|mimes:pdf,doc,docx,txt'];
+        
+        $messages = $request->has('image') ? 
+        [
+            'required' => 'La imagen es requerida',
+            'max' => 'La imagen no puede ser mayor a 5MB', 
+            'mimes' => 'Debe ser solo tipo jpeg,jpg,png'
+        ]
+        : 
+        [
+            'required' => 'El documento es requerido',
+            'max' => 'El documento no puede ser mayor a 5MB', 
+            'mimes' => 'Debe ser solo tipo pdf, doc, docx, txt'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator->fails()){
+            return response()->json(['error'=>$validator->errors()], 422);
+        }
+        $message = $this->messages::sendFile($request);
+
+        event(new NewMessage($message));
     }
 }

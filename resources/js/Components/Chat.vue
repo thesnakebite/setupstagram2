@@ -15,43 +15,108 @@
         </div>
         <div id="chat" class="w-full overflow-y-auto p-10 relative" style="height: 700px;" ref="toolbarChat">
             <ul>
-                <div v-if="messages.length > 0">
-                    <li v-for="(message, index) in messages" :key="index" class="clearfix2">
+                
+                    <li v-if="messages.length > 0" v-for="(message, index) in messages" :key="index" class="clearfix2">
                         <div class="w-full flex" 
                             :class="[message.user_id === usercurrent ? 'justify-end' : 'justify-start']">
                             <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative" 
                                 style="max-width: 300px;">
                                 
-                                <span class="block">
+                                <span v-if="message.type === 'text'" class="block">
                                     {{ message.message }}
                                 </span>
 
+                                <div v-if="message.type === 'image'" class="w-52 h-48">
+                                    <a :href="message.file_path" download class="file-message block relative">
+                                        <img :src="message.file_path" 
+                                             :alt="message.file_name" 
+                                             class="w-full min-w-full max-w-full min-h-full max-h-full">
+                                             <button class="hover-image bg-gray-500 absolute top-0 bottom-0 right-0 left-0 flex items-center justify-center cursor-pointer w-full">
+                                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                                     fill="none" 
+                                                     viewBox="0 0 24 24" 
+                                                     stroke-width="1.5" 
+                                                     stroke="currentColor" 
+                                                     class="w-6 h-6 text-white">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                                </svg>
+                                            </button>
+                                    </a>
+                                </div>
+                                <div v-if="message.type === 'document'" 
+                                     class="w-full rounded-lg bg-gray-700 flex items-center justify-center p-2">
+                                    <a :href="message.file_path" download class="flex justify-between">
+                                        <div class="text-white">{{ message.file_name }}</div>
+                                        <button class="cursor-pointer ml-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" 
+                                                 class="h-5 w-5 text-white" 
+                                                 fill="none" 
+                                                 viewBox="0 0 24 24" 
+                                                 stroke="currentColor">
+                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                            </svg>
+                                        </button>
+                                    </a>
+                                </div>
+
                                 <span class="block text-xs text-right">
-                                    {{ getHoursByDate(message.created_at) }}</span>
+                                    {{ getHoursByDate(message.created_at) }}
+                                </span>
                             </div>
                         </div>
                     </li>
-                </div>
                 
                 <div v-else class="w-full px-5 py-2 my-2 text-center text-3xl">
                     No existe conversación
                 </div>
             </ul>
+
+            <div v-if="typing" class="absolute bottom-2">
+                <div class="px-4 py-2 text-gray-700">{{ userTyping.nick_name }} esta escribiendo...</div>
+            </div>
+
+            <div v-if="error" class="absolute bottom-2 text-white bg-red-600 py-2 px-4 text-xs rounded z-50">
+                {{ error }}
+            </div>
+        </div>
+
+        <div v-if="visible" class="w-full pb-2 ml-4">
+            <div class="w-full flex items-center">
+                <span class="text-gray-600 w-0 h-0">
+                    <i class="fa-regular fa-circle fa-solid fa-spinner"></i>
+                </span>
+            </div>
+            <div class="font-semibold text-base text-gray-600 ml-6">
+                Enviando ...
+            </div>
         </div>
 
         <div class="w-full py-3 px-3 flex items-center justify-between border-t border-gray-300">
-            <button class="outline-none focus:outline-none">
-                <svg class="text-gray-400 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
+            <button @click="dispatchImage" 
+                    class="outline-none focus:outline-none">
+                    <svg class="text-gray-400 h-6 w-6" 
+                         xmlns="http://www.w3.org/2000/svg" 
+                         fill="none" 
+                         viewBox="0 0 24 24" 
+                         stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
             </button>
-            <button class="outline-none focus:outline-none ml-1">
-                <svg class="text-gray-400 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                </svg>
+            <button @click="dispatchFile" 
+                    class="outline-none focus:outline-none ml-1">
+                    <svg class="text-gray-400 h-6 w-6" 
+                         xmlns="http://www.w3.org/2000/svg" 
+                         fill="none" 
+                         viewBox="0 0 24 24" 
+                         stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                    </svg>
             </button>
 
-            <input  
+            <input id="file" @change="fileChange" type="file" class="hidden" name="file" accept=".pdf,.txt,.doc,.docx">
+            <input id="image" @change="fileChange" type="file" class="hidden" name="image" accept="image/jpeg,image/jpg,image/png">
+
+            <input @keyup="isTyping" v-model="message" @keyup.enter="sendMessage"
                    aria-placeholder="Escribe un mensaje aquí" 
                    placeholder="Escribe un mensaje aquí"
                    class="py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700" 
@@ -60,8 +125,13 @@
                    required 
             />
 
-            <button class="outline-none focus:outline-none" type="submit">
-                <svg class="text-gray-400 h-7 w-7 origin-center transform rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <button v-if="message !=''"
+                    @click="sendMessage"
+                    class="outline-none focus:outline-none" type="submit">
+                    <svg class="text-gray-400 h-7 w-7 origin-center transform rotate-90" 
+                         xmlns="http://www.w3.org/2000/svg" 
+                         viewBox="0 0 20 20" 
+                         fill="currentColor">
                     <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
                 </svg>
             </button>
@@ -71,12 +141,21 @@
 
 <script>
 
-    import moment from 'moment';
+    import axios from 'axios';
+import moment from 'moment';
 
     export default {
         data(){
             return{
-                user: this.userprop
+                user: this.userprop,
+                typing: false,
+                userTyping: '',
+                message: '',
+                visible: true,
+                sendImage: false,
+                file: null,
+                image: null,
+                error: null
             }
         },
 
@@ -90,7 +169,86 @@
         methods: {
             getHoursByDate(date){
                 return moment(date).format('h:m A')
-            }
+            },
+
+            isTyping(){
+                const _this = this
+                let chat = window.Echo.private('chat.' + this.chatid);
+
+                setTimeout(function(){
+                    chat.whisper('typing', {
+                        user: _this.$page.props.user,
+                        typing: true,
+                        chatid: _this.chatid
+                    })
+                }, 300);
+            },
+
+            async sendMessage(){
+                const formData = new FormData()
+                formData.append('chat_id', this.chatid)
+                formData.append('user_id', this.usercurrent)
+                formData.append('message', this.message)
+                this.visible = true
+
+                await axios.post('/chat/send-message', formData)
+                .then(response => {
+                    this.message = ''
+                }).finally( () => {
+                    this.visible = false
+                })
+            },
+
+            newMessage(message){
+                this.messages.push(message)
+            },
+
+            dispatchImage(){
+                document.getElementById('image').click()
+                this.sendImage = true
+            },
+
+            dispatchFile(){
+                document.getElementById('file').click()
+                this.sendImage = false
+            },
+
+            async fileChange(e){
+                const __this = this
+                const file = e.target.files[0]
+                const formData = new FormData()
+                formData.append('chatid', this.chatid)
+                formData.append('user_id', this.usercurrent)
+
+                if(this.sendImage){
+                    this.image = file
+                    formData.append('image', this.image)
+                }else{
+                    this.file = file
+                    formData.append('file', this.file)
+                }
+
+                this.visible = true
+                await axios.post('/send-file', formData,{
+                    headers:{
+                        'Content-Type' : 'multipart/form-data'
+                    }
+                }).then(response => {
+                    this.file = null
+                    this.image = null
+                }).catch(error => {
+                    if(error.response.status === 422){
+                        const _error = error.response.data.error
+                        this.error = this.sendImage ? _error.image[0] : _error.file[0]
+
+                        setTimeout(function(){
+                            __this.error = null
+                        },2000)
+                    }
+                }).finally(() => {
+                    this.visible = false
+                })
+            },
         },
 
         mounted(){
@@ -100,6 +258,12 @@
             });
             
             var channel = pusher.subscribe('setupstagram-channel');
+
+            channel.bind('new-message', function(data) {
+                if(component.chatid === data.message.chat_id){
+                    component.newMessage(data.message)
+                }
+            });
 
             channel.bind('offline', function(data) {
                 if(component.user.id === data.user.id){
@@ -112,7 +276,30 @@
                     component.user = data.user
                 }
             });
+
+            window.Echo.private('chat.' + this.chatid)
+            .listenForWhisper('typing', (data) => {
+                if(component.chatid === data.chatid){
+                    component.userTyping = data.user
+                    component.typing = data.typing
+
+                    setTimeout(function(){
+                        component.typing = false
+                    }, 900)
+                }
+            })
         }
     }
 
 </script>
+
+<style>
+    .hover-image{
+        display:none;
+    }
+
+    .file-message:hover .hover-image{
+        display: flex;
+        opacity: 0.5;
+    }
+</style>

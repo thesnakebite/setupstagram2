@@ -20,3 +20,7 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 Broadcast::channel('setupstagram.channel', function ($user) {
     return $user;
 });
+
+Broadcast::channel('chat.{id}', function ($user) {
+    return $user;
+});
