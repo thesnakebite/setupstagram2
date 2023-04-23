@@ -106,8 +106,6 @@
             });
             
             var channel = pusher.subscribe('setupstagram-channel');
-
-            
         }
     }
 </script>

@@ -15,17 +15,24 @@
         </div>
         <div id="chat" class="w-full overflow-y-auto p-10 relative" style="height: 700px;" ref="toolbarChat">
             <ul>
-                <li v-if="messages.length > 0" v-for="(message,index) in messages" :key="index" class="clearfix2">
-                    <div class="w-full flex" 
-                         :class="[message.user_id === usercurrent ? 'justify-end' : 'justify-start']">
-                        <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
-                            <span class="block">
-                                {{ message.message }}
-                            </span>
-                            <span class="block text-xs text-right">{{ getHoursByDate(message.created_at) }}</span>
+                <div v-if="messages.length > 0">
+                    <li v-for="(message, index) in messages" :key="index" class="clearfix2">
+                        <div class="w-full flex" 
+                            :class="[message.user_id === usercurrent ? 'justify-end' : 'justify-start']">
+                            <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative" 
+                                style="max-width: 300px;">
+                                
+                                <span class="block">
+                                    {{ message.message }}
+                                </span>
+
+                                <span class="block text-xs text-right">
+                                    {{ getHoursByDate(message.created_at) }}</span>
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                </div>
+                
                 <div v-else class="w-full px-5 py-2 my-2 text-center text-3xl">
                     No existe conversación
                 </div>
@@ -44,8 +51,14 @@
                 </svg>
             </button>
 
-            <input aria-placeholder="Escribe un mensaje aquí" placeholder="Escribe un mensaje aquí"
-                class="py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700" type="text" name="message" required/>
+            <input  
+                   aria-placeholder="Escribe un mensaje aquí" 
+                   placeholder="Escribe un mensaje aquí"
+                   class="py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700" 
+                   type="text" 
+                   name="message" 
+                   required 
+            />
 
             <button class="outline-none focus:outline-none" type="submit">
                 <svg class="text-gray-400 h-7 w-7 origin-center transform rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

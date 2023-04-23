@@ -21,13 +21,14 @@
                         <div class="ml-3 relative">
                                 <dropdown align="center" width="100" overflow="overflow-y-auto" maxHeight="300" class="mt-1">
                                     <template #trigger>
-                                    <!-- This is an example component -->
+                                    <!-- Tailwindcomponents -->
                                     <div class="pt-2 relative mx-auto text-gray-600">
                                         <input v-model="search"
-                                               on-keyup="userSearch" 
+                                               @keyup="userSearch" 
+                                               type="search"
                                                class="border-2 border-gray-300 bg-white w-100 h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" 
                                                placeholder="Buscar amigos...">
-                                                <span type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+                                                <span class="absolute right-0 top-0 mt-5 mr-4">
                                                     <svg class="text-gray-600 h-4 w-4 fill-current" 
                                                          xmlns="http://www.w3.org/2000/svg"
                                                          xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -48,19 +49,21 @@
                                     </template>
 
                                     <template #content>
-                                        <inertia-link v-for="(user, index) in users" :key="index" 
-                                            :href="'/profile/'+user.nick_name" 
+                                        <inertia-link v-if="users.length > 0" v-for="(user, index) in users" :key="index" 
+                                            :href="'/profile/' + user.nick_name" 
                                             class="flex items-center py-2 px-3 hover:bg-gray-100">
-                                            <img class="rounded-full w-9 h-9 object-cover" :src="user.profile_photo_url" :alt="user.name">
-                                            <div class="ml-2">
-                                                <span class="block font-bold text-gray-700 text-sm">{{ user.nick_name }}</span>
-                                                <span class="text-sm font-light text-gray-400">{{ user.name }}</span>
-                                            </div>
+                                            <img class="rounded-full w-9 h-9 object-cover" 
+                                                :src="user.profile_photo_url" 
+                                                :alt="user.name" />
+                                                <div class="ml-2">
+                                                    <span class="block font-bold text-gray-700 text-sm">{{ user.nick_name }}</span>
+                                                    <span class="text-sm font-light text-gray-400">{{ user.name }}</span>
+                                                </div>
                                         </inertia-link>
-                                        <div v-if="users.length === 0 || search === ''"  class="py-2 px-3 flex items-center">
+                                        <div v-if="search==''"  class="py-2 px-3 flex items-center">
                                             <span class="text-sm font-light text-gray-400">Busca a tus amigos...</span>
                                         </div>
-                                        <div v-if="!userexists && search !== ''" class="py-2 px-3 flex items-center">
+                                        <div v-if="!userexists" class="py-2 px-3 flex items-center">
                                             <span class="text-sm font-light text-gray-400">No existe un usuario con ese nombre</span>
                                         </div>
                                     </template>
@@ -71,7 +74,7 @@
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <div class="ml-3">
                                 <inertia-link href="/chats">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 cursor-pointer origin-center transform -rotate-45">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer origin-center transform -rotate-45">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
                                     </svg>
                                 </inertia-link>
@@ -115,7 +118,7 @@
                                                     Switch Teams
                                                 </div>
 
-                                                <template v-for="team in $page.props.user.all_teams">
+                                                <!-- <template v-for="team in $page.props.user.all_teams">
                                                     <form @submit.prevent="switchToTeam(team)" :key="team.id">
                                                         <jet-dropdown-link as="button">
                                                             <div class="flex items-center">
@@ -124,7 +127,7 @@
                                                             </div>
                                                         </jet-dropdown-link>
                                                     </form>
-                                                </template>
+                                                </template> -->
                                             </template>
                                         </div>
                                     </template>
@@ -240,7 +243,7 @@
                                     Switch Teams
                                 </div>
 
-                                <template v-for="team in $page.props.user.all_teams">
+                                <!-- <template v-for="team in $page.props.user.all_teams">
                                     <form @submit.prevent="switchToTeam(team)" :key="team.id">
                                         <jet-responsive-nav-link as="button">
                                             <div class="flex items-center">
@@ -249,7 +252,7 @@
                                             </div>
                                         </jet-responsive-nav-link>
                                     </form>
-                                </template>
+                                </template> -->
                             </template>
                         </div>
                     </div>
@@ -279,7 +282,6 @@
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
-    import { Link } from '@inertiajs/vue2'
 
     export default {
         components: {
@@ -292,8 +294,8 @@
             JetResponsiveNavLink
         },
 
-        data() {
-            return {
+        data(){
+            return{
                 showingNavigationDropdown: false,
                 users: [],
                 search: '',
@@ -313,11 +315,14 @@
             logout() {
                 axios.post('/offline/' + this.$page.props.user.id, {})
 
-                this.$inertia.post(route('logout'));
+                axios.post('/logout')
+                .then(response => {
+                    window.location = '/login'
+                })
             },
 
             async userSearch(){
-                if(this.search !=''){
+                if(this.search != ''){
                     await axios.get('/search/' + this.search)
                     .then(response => {
                         if(response.data.length > 0 && Array.isArray(response.data)){
@@ -339,11 +344,11 @@
                         axios.post('/online/' + user.id, {})
                     }
                 })
-            },
+            }
+        },
 
-            mounted(){
-                this.listen()
-            },
+        mounted(){
+            this.listen()
         }
     }
 </script>

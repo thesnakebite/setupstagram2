@@ -6,7 +6,7 @@
         <div class="w-full pb-2">
             <div class="flex justify-between">
                 <span class="block ml-2 font-semibold text-base text-gray-600 ">{{ username }}</span>
-                <span v-if="message.length > 0" class="block ml-2 text-sm text-gray-600">{{'Hace ' +getDifferenceTime(message[0].send_date) }}</span>
+                <span v-if="message.length > 0" class="block ml-2 text-sm text-gray-600">{{'Hace ' + getDifferenceTime(message[0].send_date) }}</span>
             </div>
             <span v-if="message.length > 0" class="block ml-2 text-sm text-gray-600">{{ message[0].message }}</span>
         </div>
@@ -18,11 +18,11 @@
     import moment from 'moment';
 
     export default {
-        data(){
-            return {
+        // data(){
+        //     return {
 
-            }
-        },
+        //     }
+        // },
 
         props: {
             username:{

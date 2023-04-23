@@ -17,16 +17,22 @@
                         </div>
                     </div>
 
-                    <ul v-if="search != ''" class="overflow-auto" style="height: 400px;">
+                    <ul v-if="search !=''" 
+                        class="overflow-auto" 
+                        style="height: 400px;">
                         <h2 class="ml-2 mb-2 text-gray-600 text-lg my-2">Amigos</h2>
-                        <li v-if="userschats.length > 0" v-for="(user, index) in userschats" :key="index">
-                            <user-chats :username="user.nick_name" 
-                                        :image="user.profile_photo_url"
-                                        :message="[]"
-                                        :userid="user.id" 
-                                        @getNewChat="getNewChat">
-                            </user-chats>
-                        </li>
+
+                        <div v-if="userschats.length > 0">
+                            <li v-for="(user, index) in userschats" :key="index">
+                                <user-chats :username="user.nick_name" 
+                                            :image="user.profile_photo_url"
+                                            :message="[]"
+                                            :userid="user.id" 
+                                            @getNewChat="getNewChat">
+                                </user-chats>
+                            </li>
+                        </div>
+                        
                         <div v-else class="ml-2 mb-2 text-gray-600 text-sm my-2">
                             No se encontraron amigos
                         </div>
@@ -34,15 +40,17 @@
 
                     <ul class="overflow-auto" style="height: 500px;">
                         <h2 class="ml-2 mb-2 text-gray-600 text-lg my-2">Chats</h2>
-                        <li v-if="chats.length > 0" v-for=" (chat, index) in chats" :key="index">
-                            <user-chats :username="chat.userrecive.id === $page.props.user.id ? chat.usersent.nick_name : chat.userrecive.nick_name" 
-                                        :image="chat.userrecive.id === $page.props.user.id ? chat.usersent.profile_photo_url : chat.userrecive.profile_photo_url"
-                                        :message="chat.messages"
-                                        :chatid="chat.id" 
-                                        @getChat="getChat">
-                            </user-chats>
-                        </li>
-
+                        <div v-if="chats.length > 0">
+                            <li v-for=" (chat, index) in chats" :key="index">
+                                <user-chats :username="chat.userrecive.id === $page.props.user.id ? chat.usersent.nick_name : chat.userrecive.nick_name" 
+                                            :image="chat.userrecive.id === $page.props.user.id ? chat.usersent.profile_photo_url : chat.userrecive.profile_photo_url"
+                                            :message="chat.messages"
+                                            :chatid="chat.id" 
+                                            @getChat="getChat">
+                                </user-chats>
+                            </li>
+                        </div>
+                        
                         <div v-else class="ml-2 mb-2 text-gray-600 text-sm my-2">
                             No se encontraron chats
                         </div>
@@ -77,24 +85,28 @@
     import Chat from '@/Components/Chat'
 
     export default {
-        data(){
-            return {
-                search: '',
-                userschats:[],
-                userchat:[]
-            }
-        },
-        
-        props:['chats'],
-        components:{
+        components: {
             AppLayout,
             UserChats,
             Chat
         },
+
+        data(){
+            return {
+                search: '',
+                userschats: [],
+                userchat: []
+            }
+        },
+        
+        props:[
+            'chats'
+        ],
+
         methods: {
             async searchFriends(){
                 if(this.search != ''){
-                    await axios('/user/chat/'+this.search)
+                    await axios('/user/chat/' + this.search)
                     .then(response => {
                         this.userschats = response.data
                     })
@@ -102,12 +114,14 @@
                     this.userschats = []
                 }
             },
+
             async getChat(id){
                 await axios('/user-chat/'+id)
                     .then(response => {
                         this.userchat = response.data
                     })
             },
+
             async getNewChat(id){
                 await axios('/new-chat/'+id)
                     .then(response => {
