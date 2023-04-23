@@ -2,69 +2,66 @@
     <div class="w-full">
         <div class="flex items-center border-b border-gray-300 pl-3 py-3">
             <img class="h-10 w-10 rounded-full object-cover"
-                    :src="userprop.profile_photo_url"
-                    :alt="userprop.nick_name" />
-            <span class="block ml-2 font-bold text-base text-gray-600">
-                {{ userprop.nick_name }}
-            </span>
-            <span v-if="user.status === 1" class="connected text-green-500 ml-2" >
-                <svg width="6" height="6">
-                    <circle cx="3" cy="3" r="3" fill="currentColor"></circle>
-                </svg>
-            </span>
+                 :src="userprop.profile_photo_url"
+                 :alt="userprop.nick_name" />
+                 <span class="block ml-2 font-bold text-base text-gray-600">
+                    {{ userprop.nick_name }}
+                </span>
+                <span v-if="user.status === 1" class="connected text-green-500 ml-2" >
+                    <svg width="6" height="6">
+                        <circle cx="3" cy="3" r="3" fill="currentColor"></circle>
+                    </svg>
+                </span>
         </div>
         <div id="chat" class="w-full overflow-y-auto p-10 relative" style="height: 700px;" ref="toolbarChat">
             <ul>
-                
-                    <li v-if="messages.length > 0" v-for="(message, index) in messages" :key="index" class="clearfix2">
-                        <div class="w-full flex" 
-                            :class="[message.user_id === usercurrent ? 'justify-end' : 'justify-start']">
-                            <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative" 
-                                style="max-width: 300px;">
+                <li v-if="messages.length > 0" v-for="(message, index) in messages" :key="index" class="clearfix2">
+                    <div class="w-full flex" 
+                         :class="[message.user_id === usercurrent ? 'justify-end' : 'justify-start']">
+                        <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
                                 
-                                <span v-if="message.type === 'text'" class="block">
-                                    {{ message.message }}
-                                </span>
-
-                                <div v-if="message.type === 'image'" class="w-52 h-48">
-                                    <a :href="message.file_path" download class="file-message block relative">
-                                        <img :src="message.file_path" 
-                                             :alt="message.file_name" 
-                                             class="w-full min-w-full max-w-full min-h-full max-h-full">
-                                             <button class="hover-image bg-gray-500 absolute top-0 bottom-0 right-0 left-0 flex items-center justify-center cursor-pointer w-full">
+                            <span v-if="message.type === 'text'" class="block">
+                                {{ message.message }}
+                            </span>
+                            <div v-if="message.type === 'image'" class="w-52 h-48">
+                                <a :href="message.file_path" download class="file-message block relative">
+                                    <img :src="message.file_path" 
+                                            :alt="message.file_name" 
+                                            class="w-full min-w-full max-w-full min-h-full max-h-full" />
+                                            <button class="hover-image bg-gray-500 absolute top-0 bottom-0 right-0 left-0 flex items-center justify-center cursor-pointer w-full">
                                                 <svg xmlns="http://www.w3.org/2000/svg" 
-                                                     fill="none" 
-                                                     viewBox="0 0 24 24" 
-                                                     stroke-width="1.5" 
-                                                     stroke="currentColor" 
-                                                     class="w-6 h-6 text-white">
+                                                        fill="none" 
+                                                        viewBox="0 0 24 24" 
+                                                        stroke-width="1.5" 
+                                                        stroke="currentColor" 
+                                                        class="w-6 h-6 text-white">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                                                 </svg>
                                             </button>
-                                    </a>
-                                </div>
-                                <div v-if="message.type === 'document'" 
-                                     class="w-full rounded-lg bg-gray-700 flex items-center justify-center p-2">
-                                    <a :href="message.file_path" download class="flex justify-between">
-                                        <div class="text-white">{{ message.file_name }}</div>
-                                        <button class="cursor-pointer ml-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" 
-                                                 class="h-5 w-5 text-white" 
-                                                 fill="none" 
-                                                 viewBox="0 0 24 24" 
-                                                 stroke="currentColor">
-                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                            </svg>
-                                        </button>
-                                    </a>
-                                </div>
+                                </a>
+                            </div>
+                            <div v-if="message.type === 'document'" 
+                                    class="w-full rounded-lg bg-gray-700 flex items-center justify-center p-2">
+                                <a :href="message.file_path" download class="flex justify-between">
+                                    <div class="text-white">{{ message.file_name }}</div>
+                                    <button class="cursor-pointer ml-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" 
+                                                class="h-5 w-5 text-white" 
+                                                fill="none" 
+                                                viewBox="0 0 24 24" 
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                        </svg>
+                                    </button>
+                                </a>
+                            </div>
 
                                 <span class="block text-xs text-right">
                                     {{ getHoursByDate(message.created_at) }}
                                 </span>
-                            </div>
                         </div>
-                    </li>
+                    </div>
+                </li>
                 
                 <div v-else class="w-full px-5 py-2 my-2 text-center text-3xl">
                     No existe conversación
@@ -116,14 +113,15 @@
             <input id="file" @change="fileChange" type="file" class="hidden" name="file" accept=".pdf,.txt,.doc,.docx">
             <input id="image" @change="fileChange" type="file" class="hidden" name="image" accept="image/jpeg,image/jpg,image/png">
 
-            <input @keyup="isTyping" v-model="message" @keyup.enter="sendMessage"
+            <input @keyup="isTyping" 
+                   v-model="message" 
+                   @keyup.enter="sendMessage" 
                    aria-placeholder="Escribe un mensaje aquí" 
-                   placeholder="Escribe un mensaje aquí"
+                   placeholder="Escribe un mensaje aquí" 
                    class="py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700" 
                    type="text" 
                    name="message" 
-                   required 
-            />
+                   required/>
 
             <button v-if="message !=''"
                     @click="sendMessage"
@@ -140,9 +138,7 @@
 </template>
 
 <script>
-
-    import axios from 'axios';
-import moment from 'moment';
+    import moment from 'moment';
 
     export default {
         data(){
