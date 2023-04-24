@@ -11,9 +11,10 @@
 
                 <div class="col-span-1 relative pl-4">
                     <header class="border-b border-grey-400">
-                        <inertia-link :href="'/profile/'+post.user.nick_name" class="block cursor-pointer py-4 flex items-center text-sm outline-none focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
+                        <inertia-link :href="'/profile/' + post.user.nick_name" class="block cursor-pointer py-4 flex items-center text-sm outline-none focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                             <img :src="post.user.profile_photo_url"
-                            :alt="post.user.nick_name" class="h-8 w-8 rounded-full object-cover"/>
+                                 :alt="post.user.nick_name" 
+                                 class="h-8 w-8 rounded-full object-cover"/>
                             <p class="block ml-2 font-bold">{{ post.user.nick_name }}</p>
                         </inertia-link>
                     </header>
@@ -26,7 +27,11 @@
                             </comments>
                         </div>
 
-                        <comments v-if="post.comments.length > 0" v-for="(comment,index) in post.comments" :key="index" :comment="comment.comment" :nickName="comment.user.nick_name" :urlImage="comment.user.profile_photo_url"></comments>
+                        <comments v-if="post.comments.length > 0" v-for="(comment, index) in post.comments" :key="index" 
+                                  :comment="comment.comment" 
+                                  :nickName="comment.user.nick_name" 
+                                  :urlImage="comment.user.profile_photo_url">
+                        </comments>
                         <div v-else class="w-100 text-center text-grey-500">No hay comentarios</div>
                     </div>
 

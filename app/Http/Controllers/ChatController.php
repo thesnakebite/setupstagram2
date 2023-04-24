@@ -57,6 +57,30 @@ class ChatController extends Controller
 
         return $this->getChat($chat->id);
     }
+
+    public function checkChat($id)
+    {
+        $chat = null;
+        $query1 = $this->chat->select('id')
+            ->where('user_sent', Auth::id())
+            ->where('user_recive', $id);
+        $query2 = $this->chat->select('id')
+            ->where('user_sent', $id)
+            ->where('user_recive', Auth::id());
+
+        if(!$query1->exists()){
+            if($query2->exists()){
+                $chat = $query2->first();
+                $chat = $this->getChat($chat->id);
+            }else{
+                $chat = $this->getNewChat($id);
+            }
+        }else{
+            $chat = $this->getChat($id);
+        }
+
+        return $chat;
+    }
     
     public function sendMessage(Request $request)
     {
@@ -94,5 +118,15 @@ class ChatController extends Controller
         $message = $this->messages::sendFile($request);
 
         event(new NewMessage($message));
+    }
+
+    public function directMessage($id)
+    {
+        $chat = $this->checkChat($id);
+
+        return Inertia::render('Chat/DirectMessage',
+        [
+            'chat' => $chat
+        ]);
     }
 }
