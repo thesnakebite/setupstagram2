@@ -23,13 +23,23 @@
                                           class="cursor-pointer h-7 px-3 ml-3 focus:outline-none hover:border-transparent text-center rounded border border-gray-400 hover:bg-blue-500 hover:text-white bg-transparent text-gray-500 font-semibold">
                                           Editar perfil
                             </inertia-link>
+
+                            <div v-else>
+                                <button v-if="!existsState" @click="follow" class="flex items-center ml-3 border border-blue-600 hover:bg-blue-600 hover:text-white rounded outline-none focus:outline-none bg-transparent text-blue-600 text-sm py-1 px-2">
+                                    <span class="block">Seguir</span>
+                                    <svg class="block h-5 w-5 pl-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </button>
+
+                                <button v-else @click="unfollow" class="flex items-center ml-3 border border-blue-600 hover:bg-blue-600 hover:text-white rounded outline-none focus:outline-none bg-transparent text-blue-600 text-sm py-1 px-2">
+                                    <span class="block">Dejar de seguir</span>
+                                    <svg class="block h-5 w-5 pl-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </button>
+                            </div>
                             
-                            <button class="flex items-center ml-3 border border-blue-600 hover:bg-blue-600 hover:text-white rounded outline-none focus:outline-none bg-transparent text-blue-600 text-sm py-1 px-2">
-                                <span class="block">Seguir</span>
-                                <svg class="block h-5 w-5 pl-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                            </button>
                         </div>
                         <ul class="flex justify-content-around items-center">
                             <li>
@@ -88,6 +98,7 @@
             return {
                 show: false,
                 post: [],
+                existsState: false
             }
         },
 
@@ -114,7 +125,39 @@
             changeState(){
                 this.show = !this.show
             },
-        }
-    }
+
+            async follow(){
+                await axios.post('/follow-user', {
+                    user_id: this.userProfile.id
+                }).then(response => {
+                    this.existsState = !this.existsState
+                    if(this.userProfile.id === this.$page.props.user.id){
+                        this.$page.props.unreadNotifications++
+                    }
+                })
+            },
+
+            async unfollow(){
+                await axios.post('/unfollow-user', {
+                    user_id: this.userProfile.id
+                }).then(response => {
+                    this.existsState = !this.existsState
+                })
+            },
+
+            async existsFollow(){
+                await axios.get('/exists-follow/' + this.userProfile.id)
+                .then(response => {
+                    if(response.data.exists){
+                        this.existsState = !this.existsState
+                    }
+                })
+            }
+        },
+
+        mounted() {
+            this.existsFollow()
+        },
+    } 
 
 </script>

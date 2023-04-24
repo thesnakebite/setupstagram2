@@ -57,4 +57,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Offline and Online
     Route::post('/online/{id}', OnlineController::class)->name('online');
     Route::post('/offline/{id}', OfflineController::class)->name('offline');
+
+    // Follow
+    Route::post('/follow-user', [ProfileController::class, 'followUser'])->name('follow-user');
+    Route::post('/unfollow-user', [ProfileController::class, 'unFollow'])->name('unfollow-user');
+    Route::get('/exists-follow/(user_id)', [ProfileController::class, 'existsFollow'])->name('exists-follow');
+    Route::post('/markAsRead', [ProfileController::class, 'markAsRead'])->name('markAsRead');
+
 });
