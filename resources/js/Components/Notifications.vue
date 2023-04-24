@@ -28,7 +28,7 @@
                          class="w-9 h-9 object-cover rounded-full border">
                     <div class="text-sm font-light text-gray-700 ml-3">
                         <div>{{notification.data.user.nick_name  + ' ' +  notification.data.message}}</div>
-                        <div class="text-xs text-gray-500">{{ 'Hace ' + getDifferenceDate(created_at) }}</div>
+                        <div class="text-xs text-gray-500">{{ 'Hace ' + getDifferenceDate(notification.created_at) }}</div>
                     </div>
 
                     <div v-if="$page.props.notifications.length === 0" class="flex items-center py-2 px-3">

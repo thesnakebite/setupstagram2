@@ -28,6 +28,7 @@ InertiaProgress.init({
     // Whether the NProgress spinner will be shown.
     showSpinner: false,
   })
+  
 const app = document.getElementById('app');
 
 new Vue({

@@ -28,7 +28,7 @@ class ChatController extends Controller
             'userrecive',
             'messages' => function($query){
                 $query->latest();
-            },
+            }
         ])->where('user_sent', auth()->user()->id)
           ->orWhere('user_recive', auth()->user()->id)
           ->get();

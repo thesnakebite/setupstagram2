@@ -5418,7 +5418,7 @@ var render = function render() {
             staticClass: "text-sm font-light text-gray-700 ml-3"
           }, [_c("div", [_vm._v(_vm._s(notification.data.user.nick_name + " " + notification.data.message))]), _vm._v(" "), _c("div", {
             staticClass: "text-xs text-gray-500"
-          }, [_vm._v(_vm._s("Hace " + _vm.getDifferenceDate(_vm.created_at)))])]), _vm._v(" "), _vm.$page.props.notifications.length === 0 ? _c("div", {
+          }, [_vm._v(_vm._s("Hace " + _vm.getDifferenceDate(notification.created_at)))])]), _vm._v(" "), _vm.$page.props.notifications.length === 0 ? _c("div", {
             staticClass: "flex items-center py-2 px-3"
           }, [_c("span", {
             staticClass: "text-gray-500 text-sm font-light"
@@ -5608,9 +5608,9 @@ var render = function render() {
     staticClass: "flex justify-between"
   }, [_c("span", {
     staticClass: "block ml-2 font-semibold text-base text-gray-600"
-  }, [_vm._v(_vm._s(_vm.username))]), _vm._v(" "), _c("span", {
+  }, [_vm._v(_vm._s(_vm.username))]), _vm._v(" "), _vm.message.length > 0 ? _c("span", {
     staticClass: "block ml-2 text-sm text-gray-600"
-  }, [_vm._v("5 minutes")])]), _vm._v(" "), _vm.message.length > 0 ? _c("span", {
+  }, [_vm._v("\n                " + _vm._s("Hace " + _vm.getDifferenceTime(_vm.message[0].created_at)) + "\n            ")]) : _vm._e()]), _vm._v(" "), _vm.message.length > 0 ? _c("span", {
     staticClass: "block ml-2 text-sm text-gray-600"
   }, [_vm._v(_vm._s(_vm.message[0].message))]) : _vm._e()])]);
 };
@@ -8391,8 +8391,8 @@ var render = function render() {
     }
   }, [_c("h2", {
     staticClass: "ml-2 mb-2 text-gray-600 text-lg my-2"
-  }, [_vm._v("Chats")]), _vm._v(" "), _vm.chats.length > 0 ? _c("div", _vm._l(_vm.chats, function (chat, index) {
-    return _c("li", {
+  }, [_vm._v("Chats")]), _vm._v(" "), _vm._l(_vm.chats, function (chat, index) {
+    return _vm.chats.length > 0 ? _c("li", {
       key: index
     }, [_c("user-chats", {
       attrs: {
@@ -8404,10 +8404,10 @@ var render = function render() {
       on: {
         getChat: _vm.getChat
       }
-    })], 1);
-  }), 0) : _c("div", {
-    staticClass: "ml-2 mb-2 text-gray-600 text-sm my-2"
-  }, [_vm._v("\n                        No se encontraron chats\n                    ")])])]), _vm._v(" "), _c("div", {
+    })], 1) : _c("div", {
+      staticClass: "ml-2 mb-2 text-gray-600 text-sm my-2"
+    }, [_vm._v("\n                        No se encontraron chats\n                    ")]);
+  })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-span-2 bg-white"
   }, [_c("chat")], 1)])])]);
 };
