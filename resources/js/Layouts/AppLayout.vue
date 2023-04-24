@@ -73,7 +73,7 @@
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <!-- Chat-->
-                            <div class="ml-3">
+                            <div class="mr-3">
                                 <inertia-link href="/chats">
                                     <svg xmlns="http://www.w3.org/2000/svg" 
                                          fill="none" 

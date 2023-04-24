@@ -2612,12 +2612,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  // data(){
-  //     return {
-
-  //     }
-  // },
-
   props: {
     username: {
       type: String,
@@ -4923,12 +4917,12 @@ var render = function render() {
   }, [_c("img", {
     staticClass: "h-10 w-10 rounded-full object-cover",
     attrs: {
-      src: _vm.userprop.profile_photo_url,
-      alt: _vm.userprop.nick_name
+      src: "https://images.pexels.com/photos/3777931/pexels-photo-3777931.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+      alt: "username"
     }
   }), _vm._v(" "), _c("span", {
     staticClass: "block ml-2 font-bold text-base text-gray-600"
-  }, [_vm._v("\n                " + _vm._s(_vm.userprop.nick_name) + "\n            ")]), _vm._v(" "), _vm.user.status === 1 ? _c("span", {
+  }, [_vm._v("Eduard")]), _vm._v(" "), _c("span", {
     staticClass: "connected text-green-500 ml-2"
   }, [_c("svg", {
     attrs: {
@@ -4942,7 +4936,7 @@ var render = function render() {
       r: "3",
       fill: "currentColor"
     }
-  })])]) : _vm._e()]), _vm._v(" "), _c("div", {
+  })])])]), _vm._v(" "), _c("div", {
     ref: "toolbarChat",
     staticClass: "w-full overflow-y-auto p-10 relative",
     staticStyle: {
@@ -4951,100 +4945,10 @@ var render = function render() {
     attrs: {
       id: "chat"
     }
-  }, [_c("ul", _vm._l(_vm.messages, function (message, index) {
-    return _vm.messages.length > 0 ? _c("li", {
-      key: index,
-      staticClass: "clearfix2"
-    }, [_c("div", {
-      staticClass: "w-full flex",
-      "class": [message.user_id === _vm.usercurrent ? "justify-end" : "justify-start"]
-    }, [_c("div", {
-      staticClass: "bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative",
-      staticStyle: {
-        "max-width": "300px"
-      }
-    }, [message.type === "text" ? _c("span", {
-      staticClass: "block"
-    }, [_vm._v("\n                            " + _vm._s(message.message) + "\n                        ")]) : _vm._e(), _vm._v(" "), message.type === "image" ? _c("div", {
-      staticClass: "w-52 h-48"
-    }, [_c("a", {
-      staticClass: "file-message block relative",
-      attrs: {
-        href: message.file_path,
-        download: ""
-      }
-    }, [_c("img", {
-      staticClass: "w-full min-w-full max-w-full min-h-full max-h-full",
-      attrs: {
-        src: message.file_path,
-        alt: message.file_name
-      }
-    }), _vm._v(" "), _c("button", {
-      staticClass: "hover-image bg-gray-500 absolute top-0 bottom-0 right-0 left-0 flex items-center justify-center cursor-pointer w-full"
-    }, [_c("svg", {
-      staticClass: "w-6 h-6 text-white",
-      attrs: {
-        xmlns: "http://www.w3.org/2000/svg",
-        fill: "none",
-        viewBox: "0 0 24 24",
-        "stroke-width": "1.5",
-        stroke: "currentColor"
-      }
-    }, [_c("path", {
-      attrs: {
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round",
-        d: "M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
-      }
-    })])])])]) : _vm._e(), _vm._v(" "), message.type === "document" ? _c("div", {
-      staticClass: "w-full rounded-lg bg-gray-700 flex items-center justify-center p-2"
-    }, [_c("a", {
-      staticClass: "flex justify-between",
-      attrs: {
-        href: message.file_path,
-        download: ""
-      }
-    }, [_c("div", {
-      staticClass: "text-white"
-    }, [_vm._v(_vm._s(message.file_name))]), _vm._v(" "), _c("button", {
-      staticClass: "cursor-pointer ml-3"
-    }, [_c("svg", {
-      staticClass: "h-5 w-5 text-white",
-      attrs: {
-        xmlns: "http://www.w3.org/2000/svg",
-        fill: "none",
-        viewBox: "0 0 24 24",
-        stroke: "currentColor"
-      }
-    }, [_c("path", {
-      attrs: {
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round",
-        "stroke-width": "2",
-        d: "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-      }
-    })])])])]) : _vm._e(), _vm._v(" "), _c("span", {
-      staticClass: "block text-xs text-right"
-    }, [_vm._v("\n                                " + _vm._s(_vm.getHoursByDate(message.created_at)) + "\n                            ")])])])]) : _c("div", {
-      staticClass: "w-full px-5 py-2 my-2 text-center text-3xl"
-    }, [_vm._v("\n                No existe conversación\n            ")]);
-  }), 0), _vm._v(" "), _vm.typing ? _c("div", {
-    staticClass: "absolute bottom-2"
-  }, [_c("div", {
-    staticClass: "px-4 py-2 text-gray-700"
-  }, [_vm._v(_vm._s(_vm.userTyping.nick_name) + " esta escribiendo...")])]) : _vm._e(), _vm._v(" "), _vm.error ? _c("div", {
-    staticClass: "absolute bottom-2 text-white bg-red-600 py-2 px-4 text-xs rounded z-50"
-  }, [_vm._v("\n            " + _vm._s(_vm.error) + "\n        ")]) : _vm._e()]), _vm._v(" "), _vm.visible ? _c("div", {
-    staticClass: "w-full pb-2 ml-4"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "font-semibold text-base text-gray-600 ml-6"
-  }, [_vm._v("\n            Enviando ...\n        ")])]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_vm._m(0)]), _vm._v(" "), _c("div", {
     staticClass: "w-full py-3 px-3 flex items-center justify-between border-t border-gray-300"
   }, [_c("button", {
-    staticClass: "outline-none focus:outline-none",
-    on: {
-      click: _vm.dispatchImage
-    }
+    staticClass: "outline-none focus:outline-none"
   }, [_c("svg", {
     staticClass: "text-gray-400 h-6 w-6",
     attrs: {
@@ -5061,10 +4965,7 @@ var render = function render() {
       d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
     }
   })])]), _vm._v(" "), _c("button", {
-    staticClass: "outline-none focus:outline-none ml-1",
-    on: {
-      click: _vm.dispatchFile
-    }
+    staticClass: "outline-none focus:outline-none ml-1"
   }, [_c("svg", {
     staticClass: "text-gray-400 h-6 w-6",
     attrs: {
@@ -5081,34 +4982,6 @@ var render = function render() {
       d: "M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
     }
   })])]), _vm._v(" "), _c("input", {
-    staticClass: "hidden",
-    attrs: {
-      id: "file",
-      type: "file",
-      name: "file",
-      accept: ".pdf,.txt,.doc,.docx"
-    },
-    on: {
-      change: _vm.fileChange
-    }
-  }), _vm._v(" "), _c("input", {
-    staticClass: "hidden",
-    attrs: {
-      id: "image",
-      type: "file",
-      name: "image",
-      accept: "image/jpeg,image/jpg,image/png"
-    },
-    on: {
-      change: _vm.fileChange
-    }
-  }), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.message,
-      expression: "message"
-    }],
     staticClass: "py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700",
     attrs: {
       "aria-placeholder": "Escribe un mensaje aquí",
@@ -5116,27 +4989,11 @@ var render = function render() {
       type: "text",
       name: "message",
       required: ""
-    },
-    domProps: {
-      value: _vm.message
-    },
-    on: {
-      keyup: [_vm.isTyping, function ($event) {
-        if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) return null;
-        return _vm.sendMessage.apply(null, arguments);
-      }],
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.message = $event.target.value;
-      }
     }
-  }), _vm._v(" "), _vm.message != "" ? _c("button", {
+  }), _vm._v(" "), _c("button", {
     staticClass: "outline-none focus:outline-none",
     attrs: {
       type: "submit"
-    },
-    on: {
-      click: _vm.sendMessage
     }
   }, [_c("svg", {
     staticClass: "text-gray-400 h-7 w-7 origin-center transform rotate-90",
@@ -5149,18 +5006,58 @@ var render = function render() {
     attrs: {
       d: "M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
     }
-  })])]) : _vm._e()])]);
+  })])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "w-full flex items-center"
+  return _c("ul", [_c("li", {
+    staticClass: "clearfix2"
+  }, [_c("div", {
+    staticClass: "w-full flex justify-start"
+  }, [_c("div", {
+    staticClass: "bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative",
+    staticStyle: {
+      "max-width": "300px"
+    }
   }, [_c("span", {
-    staticClass: "text-gray-600 w-0 h-0"
-  }, [_c("i", {
-    staticClass: "fa-regular fa-circle fa-solid fa-spinner"
-  })])]);
+    staticClass: "block"
+  }, [_vm._v("Hello bro")]), _vm._v(" "), _c("span", {
+    staticClass: "block text-xs text-right"
+  }, [_vm._v("10:30pm")])])]), _vm._v(" "), _c("div", {
+    staticClass: "w-full flex justify-end"
+  }, [_c("div", {
+    staticClass: "bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative",
+    staticStyle: {
+      "max-width": "300px"
+    }
+  }, [_c("span", {
+    staticClass: "block"
+  }, [_vm._v("Hello")]), _vm._v(" "), _c("span", {
+    staticClass: "block text-xs text-left"
+  }, [_vm._v("10:32pm")])])]), _vm._v(" "), _c("div", {
+    staticClass: "w-full flex justify-end"
+  }, [_c("div", {
+    staticClass: "bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative",
+    staticStyle: {
+      "max-width": "300px"
+    }
+  }, [_c("span", {
+    staticClass: "block"
+  }, [_vm._v("how are you?")]), _vm._v(" "), _c("span", {
+    staticClass: "block text-xs text-left"
+  }, [_vm._v("10:32pm")])])]), _vm._v(" "), _c("div", {
+    staticClass: "w-full flex justify-start"
+  }, [_c("div", {
+    staticClass: "bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative",
+    staticStyle: {
+      "max-width": "300px"
+    }
+  }, [_c("span", {
+    staticClass: "block"
+  }, [_vm._v("I am fine")]), _vm._v(" "), _c("span", {
+    staticClass: "block text-xs text-right"
+  }, [_vm._v("10:42pm")])])])])]);
 }];
 render._withStripped = true;
 
@@ -5698,10 +5595,7 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("a", {
-    staticClass: "hover:bg-gray-100 border-b border-gray-300 px-3 py-2 cursor-pointer flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out",
-    on: {
-      click: _vm.emitEvent
-    }
+    staticClass: "hover:bg-gray-100 border-b border-gray-300 px-3 py-2 cursor-pointer flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"
   }, [_c("img", {
     staticClass: "h-10 w-10 rounded-full object-cover",
     attrs: {
@@ -5714,9 +5608,9 @@ var render = function render() {
     staticClass: "flex justify-between"
   }, [_c("span", {
     staticClass: "block ml-2 font-semibold text-base text-gray-600"
-  }, [_vm._v(_vm._s(_vm.username))]), _vm._v(" "), _vm.message.length > 0 ? _c("span", {
+  }, [_vm._v(_vm._s(_vm.username))]), _vm._v(" "), _c("span", {
     staticClass: "block ml-2 text-sm text-gray-600"
-  }, [_vm._v(_vm._s("Hace " + _vm.getDifferenceTime(_vm.message[0].send_date)))]) : _vm._e()]), _vm._v(" "), _vm.message.length > 0 ? _c("span", {
+  }, [_vm._v("5 minutes")])]), _vm._v(" "), _vm.message.length > 0 ? _c("span", {
     staticClass: "block ml-2 text-sm text-gray-600"
   }, [_vm._v(_vm._s(_vm.message[0].message))]) : _vm._e()])]);
 };
@@ -6993,7 +6887,7 @@ var render = function render() {
   })], 1), _vm._v(" "), _c("div", {
     staticClass: "hidden sm:flex sm:items-center sm:ml-6"
   }, [_c("div", {
-    staticClass: "ml-3"
+    staticClass: "mr-3"
   }, [_c("inertia-link", {
     attrs: {
       href: "/chats"
@@ -8515,25 +8409,7 @@ var render = function render() {
     staticClass: "ml-2 mb-2 text-gray-600 text-sm my-2"
   }, [_vm._v("\n                        No se encontraron chats\n                    ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-span-2 bg-white"
-  }, [_vm.userchat.length <= 0 ? _c("div", {
-    staticClass: "w-full flex justify-center items-center",
-    staticStyle: {
-      height: "75vh"
-    }
-  }, [_c("div", {
-    staticClass: "text-center"
-  }, [_c("h5", {
-    staticClass: "text-gray-600 text-lg mb-2"
-  }, [_vm._v("Tus mensajes")]), _vm._v(" "), _c("span", {
-    staticClass: "block text-sm text-gray-600"
-  }, [_vm._v("Envía fotos y mensajes a tus amigos")])])]) : _c("chat", {
-    attrs: {
-      userprops: _vm.userchat.userrecive.id === _vm.$page.props.user.id ? _vm.userchat.usersent : _vm.userchat.userrecive,
-      messages: _vm.userchat.message,
-      usercurrent: _vm.$page.props.user.id,
-      chatid: _vm.userchat.id
-    }
-  })], 1)])])]);
+  }, [_c("chat")], 1)])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -9919,8 +9795,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "",
-  cluster: "mt1",
+  key: "d3d6601b3eddd127fb52",
+  cluster: "eu",
   forceTLS: true
 });
 
