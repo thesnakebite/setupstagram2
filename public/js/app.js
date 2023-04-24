@@ -2207,10 +2207,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+    scrollToBottom: function scrollToBottom() {
+      var _this4 = this;
+      setTimeout(function () {
+        _this4.$refs.toolbarChat.scrollTop = _this4.$refs.toolbarChat.scrollHeight - _this4.$refs.toolbarChat.clientHeight;
+      }, 50);
+    },
+    reset: function reset() {
+      Object.assign(this.$data, this.$options.data.apply(this));
+    }
+  },
+  watch: {
+    message: function message(messages) {
+      this.scrollToBottom();
+    },
+    chatid: function chatid(_chatid) {
+      this.scrollToBottom();
+      this.reset();
     }
   },
   mounted: function mounted() {
     var component = this;
+    this.scrollToBottom();
     var pusher = new Pusher('d3d6601b3eddd127fb52', {
       cluster: 'eu'
     });
@@ -9576,8 +9595,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "d3d6601b3eddd127fb52",
-  cluster: "eu",
+  key: "",
+  cluster: "mt1",
   forceTLS: true
 });
 

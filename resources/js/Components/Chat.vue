@@ -245,10 +245,33 @@
                     this.visible = false
                 })
             },
+            scrollToBottom(){
+                setTimeout( ()=> {
+                    this.$refs.toolbarChat.scrollTop = this.$refs.toolbarChat.scrollHeight - this.$refs.toolbarChat.clientHeight
+                },50)
+            },
+
+            reset(){
+                Object.assign(this.$data,this.$options.data.apply(this))
+            }
+
+        },
+
+        watch:{
+            message(messages){
+                this.scrollToBottom()
+            },
+
+            chatid(chatid){
+                this.scrollToBottom()
+                this.reset()
+            }
         },
 
         mounted(){
             const component = this
+            this.scrollToBottom()
+            
             var pusher = new Pusher('d3d6601b3eddd127fb52', {
                 cluster: 'eu'
             });
