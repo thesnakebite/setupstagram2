@@ -11,21 +11,18 @@ class Follower extends Model
 
     protected $fillable = [
         'user_id',
-        'follower_id'
+        'follower_id',
     ];
 
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
-    public function follower()
-    {
-        return $this->belongTo(User::class);
+    public function follower(){
+        return $this->belongsTo(User::class);
     }
 
-    public static function follow($user_id)
-    {
+    public static function follow($user_id){
         return (new static)::create([
             'user_id' => $user_id,
             'follower_id' => auth()->user()->id

@@ -49,13 +49,13 @@
                                 </span>
                             </li>
                             <li>
-                                <span class="flex cursor-pointer text-base ml-5">
+                                <span class="flex text-base ml-5">
                                     <span class="font-bold mr-2">{{ followers }}</span>
-                                    Seguidor
+                                    Seguidores
                                 </span>
                             </li>
                             <li>
-                                <span class="flex cursor-pointer text-base ml-5">
+                                <span class="flex text-base ml-5">
                                     <span class="font-bold mr-2">{{ followed }}</span>
                                     Seguidos
                                 </span>
@@ -74,7 +74,7 @@
                     </div>
             </div>
             <div class="border-b border-gray-300"></div>
-            <article v-if="posts.length > 0" class="mt-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
+            <article v-if="posts.length > 0" class="mt-5 grid sm:grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
 
                 <!-- Listado de posts -->
                 <image-post v-for="(post, index) in posts" :key="index" :post="post" @show="changeStateModalPost"></image-post>

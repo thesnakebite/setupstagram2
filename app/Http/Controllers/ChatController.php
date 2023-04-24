@@ -81,6 +81,11 @@ class ChatController extends Controller
 
         return $chat;
     }
+
+    public function createChatIfNotExists($id)
+    {
+        return $this->checkChat($id);
+    }
     
     public function sendMessage(Request $request)
     {

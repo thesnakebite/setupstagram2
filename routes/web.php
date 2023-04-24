@@ -48,7 +48,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         ->name('usersIFollow');
 
     Route::get('/user-chat/{id}', [ChatController::class, 'getChat'])->name('get-chat');
-    Route::get('/new-chat/{id}', [ChatController::class, 'getNewChat'])->name('get-new-chat');
+    Route::get('/new-chat/{id}', [ChatController::class, 'createChatIfNotExists'])->name('get-new-chat');
     Route::post('/chat/send-message', [ChatController::class, 'sendMessage'])->name('send-message');
     Route::post('/send-file', [ChatController::class,'sendFile'])->name('send-file');
     Route::get('/direct-message/{id}', [ChatController::class, 'directMessage'])->name('direct-message');

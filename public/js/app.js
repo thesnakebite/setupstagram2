@@ -9650,11 +9650,11 @@ var render = function render() {
   }, [_c("span", {
     staticClass: "font-bold mr-2"
   }, [_vm._v(_vm._s(_vm.postsCount))]), _vm._v("\n                                Publicaciones\n                            ")])]), _vm._v(" "), _c("li", [_c("span", {
-    staticClass: "flex cursor-pointer text-base ml-5"
+    staticClass: "flex text-base ml-5"
   }, [_c("span", {
     staticClass: "font-bold mr-2"
-  }, [_vm._v(_vm._s(_vm.followers))]), _vm._v("\n                                Seguidor\n                            ")])]), _vm._v(" "), _c("li", [_c("span", {
-    staticClass: "flex cursor-pointer text-base ml-5"
+  }, [_vm._v(_vm._s(_vm.followers))]), _vm._v("\n                                Seguidores\n                            ")])]), _vm._v(" "), _c("li", [_c("span", {
+    staticClass: "flex text-base ml-5"
   }, [_c("span", {
     staticClass: "font-bold mr-2"
   }, [_vm._v(_vm._s(_vm.followed))]), _vm._v("\n                                Seguidos\n                            ")])])]), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", {}, [_c("h1", {
@@ -9670,7 +9670,7 @@ var render = function render() {
   }, [_vm._v("\n                           " + _vm._s(_vm.userProfile.web_site) + "\n                        ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "border-b border-gray-300"
   }), _vm._v(" "), _vm.posts.length > 0 ? _c("article", {
-    staticClass: "mt-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10"
+    staticClass: "mt-5 grid sm:grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3"
   }, _vm._l(_vm.posts, function (post, index) {
     return _c("image-post", {
       key: index,
