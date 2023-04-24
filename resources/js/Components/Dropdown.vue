@@ -69,6 +69,7 @@
             widthClass() {
                 return {
                     '48': 'w-48',
+                    '80': 'w-80',
                     '100': 'w-full',
                 }[this.width.toString()]
             },
